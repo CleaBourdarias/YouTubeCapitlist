@@ -11,7 +11,7 @@ module.exports = {
         {
             "id": 1,
             "name": "Thread horreur",
-            "logo": "icones/premierproduit.jpg",
+            "logo": "icons/ThreadHorreur.jpg",
             "cout": 4,
             "croissance": 1.07,
             "revenu": 1,
@@ -51,7 +51,7 @@ module.exports = {
         {
             "id": 2,
             "name": "Essayer de ne pas rire",
-            "logo": "icones/premierproduit.jpg",
+            "logo": "icones/EssayePasRire.jpg",
             "cout": 60,
             "croissance": 1.15,
             "revenu": 60,
@@ -92,7 +92,7 @@ module.exports = {
     "allunlocks": [
         {
             "name": "Trophée Argent",
-            "logo": "icones/premierunlock.jpg",
+            "logo": "icones/TropheeArgent.jpg",
             "seuil": 30,
             "idcible": 0,
             "ratio": 2,
@@ -101,7 +101,7 @@ module.exports = {
         }, 
         {
             "name": "Trophée Or",
-            "logo": "icones/premierunlock.jpg",
+            "logo": "icones/TropheeOr.jpg",
             "seuil": 60,
             "idcible": 0,
             "ratio": 2,
@@ -112,7 +112,7 @@ module.exports = {
     "upgrades": [
         {
             "name": "ft. Natoo",
-            "logo": "icones/premierupgrade.jpg",
+            "logo": "icones/Natoo.png",
             "seuil": 1e3,
             "idcible": 1,
             "ratio": 3,
@@ -121,7 +121,7 @@ module.exports = {
         },
         {
             "name": "ft. Mastu",
-            "logo": "icones/premierupgrade.jpg",
+            "logo": "icones/Mastu.png",
             "seuil": 1e4,
             "idcible": 2,
             "ratio": 3,
@@ -130,7 +130,7 @@ module.exports = {
         },
         {
             "name": "ft. Pierre Croce",
-            "logo": "icones/premierupgrade.jpg",
+            "logo": "icones/PierreCroce.png",
             "seuil": 1e5,
             "idcible": 1,
             "ratio": 2,
@@ -161,7 +161,7 @@ module.exports = {
     "managers": [
         {
             "name": "Squeezie",
-            "logo": "icones/WangariMaathai.jpg",
+            "logo": "icones/Squeezie.png",
             "seuil": 10,
             "idcible": 1,
             "ratio": 0,
