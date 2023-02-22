@@ -27,7 +27,7 @@ module.exports = {
                     "idcible": 1,
                     "ratio": 2,
                     "typeratio": "vitesse",
-                    "unlocked": "false"
+                    "unlocked": false
                 },
                 {
                     "name": "Dans un chateau",
@@ -36,7 +36,7 @@ module.exports = {
                     "idcible": 1,
                     "ratio": 2,
                     "typeratio": "vitesse",
-                    "unlocked": "false"
+                    "unlocked": false
                 },
                 {
                     "name": "Dans la fôret",
@@ -45,7 +45,7 @@ module.exports = {
                     "idcible": 1,
                     "ratio": 2,
                     "typeratio": "vitesse",
-                    "unlocked": "false"
+                    "unlocked": false
                 }]
         },
         {
@@ -67,7 +67,7 @@ module.exports = {
                     "idcible": 2,
                     "ratio": 2,
                     "typeratio": "vitesse",
-                    "unlocked": "false"
+                    "unlocked": false
                 },
                 {
                     "name": "Insta",
@@ -76,7 +76,7 @@ module.exports = {
                     "idcible": 2,
                     "ratio": 2,
                     "typeratio": "vitesse",
-                    "unlocked": "false"
+                    "unlocked": false
                 },
                 {
                     "name": "YouTube",
@@ -85,7 +85,7 @@ module.exports = {
                     "idcible": 2,
                     "ratio": 2,
                     "typeratio": "vitesse",
-                    "unlocked": "false"
+                    "unlocked": false
                 }]
         }
     ],
@@ -97,7 +97,7 @@ module.exports = {
             "idcible": 0,
             "ratio": 2,
             "typeratio": "gain",
-            "unlocked": "false"
+            "unlocked": false
         }, 
         {
             "name": "Trophée Or",
@@ -106,7 +106,7 @@ module.exports = {
             "idcible": 0,
             "ratio": 2,
             "typeratio": "gain",
-            "unlocked": "false"
+            "unlocked": false
         }
     ],
     "upgrades": [
@@ -117,7 +117,7 @@ module.exports = {
             "idcible": 1,
             "ratio": 3,
             "typeratio": "vitesse",
-            "unlocked": "false"
+            "unlocked": false
         },
         {
             "name": "ft. Mastu",
@@ -126,7 +126,7 @@ module.exports = {
             "idcible": 2,
             "ratio": 3,
             "typeratio": "gain",
-            "unlocked": "false"
+            "unlocked": false
         },
         {
             "name": "ft. Pierre Croce",
@@ -135,7 +135,7 @@ module.exports = {
             "idcible": 1,
             "ratio": 2,
             "typeratio": "ange",
-            "unlocked": "false"
+            "unlocked": false
         }
     ],
     "angelupgrades": [
@@ -146,7 +146,7 @@ module.exports = {
             "idcible": 0,
             "ratio": 3,
             "typeratio": "gain",
-            "unlocked": "false"
+            "unlocked": false
         },
         {
             "name": "Scandale arnaque",
@@ -155,7 +155,7 @@ module.exports = {
             "idcible": 0,
             "ratio": 6,
             "typeratio": "gain",
-            "unlocked": "false"
+            "unlocked": false
         }
     ],
     "managers": [
@@ -166,7 +166,7 @@ module.exports = {
             "idcible": 1,
             "ratio": 0,
             "typeratio": "gain",
-            "unlocked": "false"
+            "unlocked": false
         },
         {
             "name": "Joyca",
@@ -175,7 +175,7 @@ module.exports = {
             "idcible": 2,
             "ratio": 0,
             "typeratio": "gain",
-            "unlocked": "false"
+            "unlocked": false
         }
     ]
 };
