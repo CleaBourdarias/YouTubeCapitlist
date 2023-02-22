@@ -17,73 +17,84 @@ function saveWorld(context) {
 module.exports = {
     Query: {
         getWorld(parent, args, context, info) {
+            ScaleScore()
             saveWorld(context)
             return context.world
         }
     },
     Mutation: {
-        resetWorld(){
-            tempsCourant = Date.now() - Float32Array(context.world.lastupdate)
-            let count = 0
-            for (p in context.world.products){
-                if (p.managerUnlocked){
-                    count = tempsCourant/p.vitesse
-                    if (p.timeleft-tempsCourant > 0){
-                        context.world.score = context.world.score + count*p.revenu*p.quantite +1
-                    }else{
-                        context.world.score = context.world.score + count*p.revenu*p.quantite 
-                    }
-                    p.timeleft = tempsCourant%vitesse
-                }else{
-                    if (p.timeleft != 0 && p.timeleft<tempsCourant){
-                        context.world.score = context.world.score + p.revenu*p.quantite
-                    }else{
-                        p.timeleft = p.timeleft - tempsCourant
-                    }
-                }
-            }
-            lastupdate = String(Date.now())
 
-
-        },
-        acheterQtProduit(parent, args, context){
+        acheterQtProduit(parent, args, context) {
+            ScaleScore()
             let produit = context.world.products.find(p => p.id === args.id)
 
-            if (produit === undefined){
+            if (produit === undefined) {
                 throw new Error(
                     `Le produit avec l'id ${args.id} n'existe pas`)
-            }else{
+            } else {
                 // on augmente la quantité du produit 
                 produit.quantite = produit.quantite + args.quantite
 
                 // on soustrait le montant acheté à l'argent total
-                context.world.money = context.world.money-((Math.pow(produit.croissance,args.quantite)-1)/(produit.croissance-1)*produit.cout)
+                context.world.money = context.world.money - ((Math.pow(produit.croissance, args.quantite) - 1) / (produit.croissance - 1) * produit.cout)
 
                 // on reactualise le coût du produit
-                produit.cout = produit.cout*Math.pow(produit.croissance,args.quantite)
+                produit.cout = produit.cout * Math.pow(produit.croissance, args.quantite)
 
                 saveWorld(context)
                 return produit
             }
         },
 
-        lancerProductionProduit(parent, args, context){
+        lancerProductionProduit(parent, args, context) {
+            ScaleScore()
             let produit = context.world.products.find(p => p.id === args.id)
-            console.log(produit.timeleft)
+
             produit.timeleft = produit.vitesse
-            console.log(produit.timeleft)
+
+            saveWorld(context)
             return produit
         },
 
-        engagerManager(parent, args, context){
+        engagerManager(parent, args, context) {
+            ScaleScore()
             let manager = context.world.managers.find(m => m.name === args.name)
             let produit = context.world.products.find(p => p.id === manager.idcible)
-            
+
             manager.unlocked = true
             produit.managerUnlocked = true
 
+            saveWorld(context)
             return manager
+        }
+    },
+
+    ScaleScore() {
+        tempsEcoule = Date.now() - parseInt(context.world.lastupdate)
+
+        let nbProduction = 0
+
+        for (p in context.world.products) {
+
+            if (p.managerUnlocked) {
+                if (p.timeleft > 0) {
+                    tempsEcouleProduit = temspEcoule - p.timeleft
+                    if (tempsEcouleProduit < 0) p.timeleft -= tempsEcoule
+                    else {
+
+                        nbProduction = tempsEcouleProduit / p.vitesse + 1
+                        p.timeleft = tempsEcouleProduit % p.vitesse
+                    }
+                } else {
+                    p.timeleft -= tempsEcoule
+                    if (p.timeleft <= 0) {
+                        nbProduction = 1
+                        p.timeleft = 0
+                    }
+                }
+                context.world.score = context.world.score + nbProduction * p.revenu * p.quantite
+            }
+            lastupdate = String(Date.now())
         }
     }
 };
-
