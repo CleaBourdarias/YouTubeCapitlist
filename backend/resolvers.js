@@ -57,27 +57,32 @@ module.exports = {
                 produit.quantite = produit.quantite + args.quantite
 
                 // on soustrait le montant acheté à l'argent total
-                context.world.money = context.world.money - ((Math.pow(produit.croissance,args.quantite)-1)/produit.croissance-1)
+                context.world.money = context.world.money-((Math.pow(produit.croissance,args.quantite)-1)/(produit.croissance-1)*produit.cout)
 
                 // on reactualise le coût du produit
                 produit.cout = produit.cout*Math.pow(produit.croissance,args.quantite)
 
                 saveWorld(context)
+                return produit
             }
         },
 
         lancerProductionProduit(parent, args, context){
             let produit = context.world.products.find(p => p.id === args.id)
-
+            console.log(produit.timeleft)
             produit.timeleft = produit.vitesse
+            console.log(produit.timeleft)
+            return produit
         },
 
         engagerManager(parent, args, context){
             let manager = context.world.managers.find(m => m.name === args.name)
             let produit = context.world.products.find(p => p.id === manager.idcible)
+            
+            manager.unlocked = true
+            produit.managerUnlocked = true
 
-            manager.unlocked = "true"
-            produit.managerUnlocked = "true"
+            return manager
         }
     }
 };
