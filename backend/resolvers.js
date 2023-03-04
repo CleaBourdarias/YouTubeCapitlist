@@ -1,4 +1,4 @@
-const { lastupdate } = require("./world");
+var { lastupdate } = require("./world");
 
 const fs = require("fs").promises
 
@@ -13,77 +13,241 @@ function saveWorld(context) {
         })
 };
 
+function scalcScore(context) {
+    let tempsEcoule = Date.now() - parseInt(context.world.lastupdate)
+
+    let nbProduction = 0
+
+    for (p in context.world.products) {
+
+        if (p.managerUnlocked) {
+            if (p.timeleft > 0) {
+                tempsEcouleProduit = tempsEcoule - p.timeleft
+                if (tempsEcouleProduit < 0) p.timeleft -= tempsEcoule
+                else {
+
+                    nbProduction = (tempsEcouleProduit / p.vitesse) + 1
+                    p.timeleft = tempsEcouleProduit % p.vitesse
+                }
+            } else {
+                p.timeleft -= tempsEcoule
+                if (p.timeleft <= 0) {
+                    nbProduction = 1
+                    p.timeleft = 0
+                }
+            }
+            context.world.score = context.world.score + nbProduction * p.revenu * p.quantite
+        }
+        
+    }
+    context.world.lastupdate = String(Date.now())
+    saveWorld(context)
+};
+
 
 module.exports = {
     Query: {
         getWorld(parent, args, context, info) {
+            scalcScore(context)
             saveWorld(context)
             return context.world
         }
     },
     Mutation: {
-        resetWorld(){
-            tempsCourant = Date.now() - Float32Array(context.world.lastupdate)
-            let count = 0
-            for (p in context.world.products){
-                if (p.managerUnlocked){
-                    count = tempsCourant/p.vitesse
-                    if (p.timeleft-tempsCourant > 0){
-                        context.world.score = context.world.score + count*p.revenu*p.quantite +1
-                    }else{
-                        context.world.score = context.world.score + count*p.revenu*p.quantite 
-                    }
-                    p.timeleft = tempsCourant%vitesse
-                }else{
-                    if (p.timeleft != 0 && p.timeleft<tempsCourant){
-                        context.world.score = context.world.score + p.revenu*p.quantite
-                    }else{
-                        p.timeleft = p.timeleft - tempsCourant
-                    }
-                }
-            }
-            lastupdate = String(Date.now())
 
-
-        },
-        acheterQtProduit(parent, args, context){
+        acheterQtProduit(parent, args, context) {
+            scalcScore(context)
             let produit = context.world.products.find(p => p.id === args.id)
 
-            if (produit === undefined){
+            if (produit === undefined) {
                 throw new Error(
                     `Le produit avec l'id ${args.id} n'existe pas`)
-            }else{
+            } else {
                 // on augmente la quantité du produit 
                 produit.quantite = produit.quantite + args.quantite
 
                 // on soustrait le montant acheté à l'argent total
-                context.world.money = context.world.money-((Math.pow(produit.croissance,args.quantite)-1)/(produit.croissance-1)*produit.cout)
+                context.world.money = context.world.money - ((Math.pow(produit.croissance, args.quantite) - 1) / (produit.croissance - 1) * produit.cout)
 
                 // on reactualise le coût du produit
-                produit.cout = produit.cout*Math.pow(produit.croissance,args.quantite)
+                produit.cout = produit.cout * Math.pow(produit.croissance, args.quantite)
+
+                // on vérifie si il y a un unlock a débloquer
+                for (u in produit.pallier){
+                    if (u.idcible == produit.id && produit.quantite >= u.seuil){
+                        u.undefined = true
+                        if (u.typeratio == "vitesse"){
+                            produit.vitesse = produit.vitesse/u.ratio
+                        }
+                        if (u.typeratio == "gain"){
+                            produit.revenu = produit.revenu*u.ratio
+                        }
+                    }
+                }
+
+                // on vérifie si des allunlocks sont débloqués
+                for(a in context.world.allunlocks){
+                    if (produit.quantite >= a.seuil){
+                        let allunlocks = true
+                        // on parcours les produits pour savoir s'il ont tous un quantité suffisante
+                        for (p in context.world.products){
+                            if (p.quantite < seuil){
+                                allunlocks = false
+                            }
+                        }
+                        if (allunlocks){
+                            a.unlocked = true
+                            let produitCible = context.world.products.find(p => p.id === a.idcible)
+                            
+                            if (produitCible === undefined) {
+                                throw new Error(
+                                    `Le produit avec l'id ${a.idcible} n'existe pas`)
+                            } else {
+                                if (a.typeratio == "vitesse"){
+                                    produitCible.vitesse = produitCible.vitesse/a.ratio
+                                }
+                                if (a.typeratio == "gain"){
+                                    produitCible.revenu = produitCible.revenu*a.ratio
+                                }
+                            }
+                        }
+                    }
+                }
 
                 saveWorld(context)
                 return produit
             }
         },
 
-        lancerProductionProduit(parent, args, context){
+        lancerProductionProduit(parent, args, context) {
+            scalcScore(context)
             let produit = context.world.products.find(p => p.id === args.id)
-            console.log(produit.timeleft)
-            produit.timeleft = produit.vitesse
-            console.log(produit.timeleft)
-            return produit
+
+            if (produit === undefined) {
+                throw new Error(
+                    `Le produit avec l'id ${args.id} n'existe pas`)
+            } else {
+                produit.timeleft = produit.vitesse
+
+                saveWorld(context)
+                return produit
+            }
         },
 
-        engagerManager(parent, args, context){
+        engagerManager(parent, args, context) {
+            scalcScore(context)
             let manager = context.world.managers.find(m => m.name === args.name)
             let produit = context.world.products.find(p => p.id === manager.idcible)
-            
-            manager.unlocked = true
-            produit.managerUnlocked = true
 
-            return manager
+            if (produit === undefined) {
+                throw new Error(
+                    `Le produit avec l'id ${manager.idcible} n'existe pas`)
+            } 
+            if (manager === undefined){
+                throw new Error(
+                    `Le manager avec le nom ${args.name} n'existe pas`)
+
+            } else {
+
+                manager.unlocked = true
+                produit.managerUnlocked = true
+
+                saveWorld(context)
+                console.log(context.world)
+                return manager
+            }
+        },
+        acheterCashUpgrade(parent, args, context){
+            scalcScore(context)
+            let upgrade = context.world.upgrades.find(up => up.name === args.name)
+
+            if (upgrade === undefined){
+                throw new Error(
+                    `L'upgrade avec le nom ${args.name} n'existe pas`)
+
+            } else {
+                if(context.world.money >= upgrade.seuil){
+                    upgrade.unlocked = true
+                    context.world.money -= upgrade.seuil
+
+                    let produit = context.world.products.find(p => p.id === upgrade.idcible)
+
+                    if (produit === undefined){
+                        throw new Error(
+                            `Le produit avec l'id ${upgrade.idcible} n'existe pas`)
+                    } else {
+                        if (upgrade.typeratio == "vitesse"){
+                            produit.vitesse = produit.vitesse/upgrade.ratio
+                        }
+                        if (upgrade.typeratio == "gain"){
+                            produit.revenu = produit.revenu*upgrade.ratio
+                        }   
+                    }
+                }
+            }
+            saveWorld(context)
+            return upgrade
+        },
+        resetWorld(parent, args, context){
+            scalcScore(context)
+
+            //context.world.totalangels += 150*Math.sqrt(context.world.score/Math.pow(10,15))
+            //context.world.activeangels += 150*Math.sqrt(context.world.score/Math.pow(10,15))
+
+            let score = context.world.score
+            let totalangels = context.world.totalangels
+            let activeangels = context.world.activeangels
+
+            let world = require("./world")
+
+            context.world = world
+
+            //context.world.score = score
+            //context.world.totalangels = totalangels
+            //context.world.activeangels = activeangels
+
+            context.world.score = 1000
+            context.world.totalangels = 1000
+            context.world.activeangels = 1000
+            context.world.money = 1000000000
+
+
+            for(p in context.world.products){
+                p.revenu = p.revenu * (1+(context.world.activeangels*context.world.angelbonus/100))
+            }
+
+            saveWorld(context)
+            return context.world
+        }, 
+        acheterAngelUpgrade(parent, args, context){
+            scalcScore(context)
+            let angelUpgrade = context.world.angelupgrades.find(angelUp => angelUp.name === args.name)
+
+            if (angelUpgrade === undefined){
+                throw new Error(
+                    `Le angelUpgrade avec le nom ${args.name} n'existe pas`)
+            } else {
+                angelUpgrade.unlocked = true
+
+                if (angelUpgrade.typeratio == "ange"){
+                    context.world.angelbonus += context.world.angelbonus*angelUpgrade.ratio/100
+
+                }else{
+                    for(produit in context.world.products){
+                   
+                        if (angelUpgrade.typeratio == "vitesse"){
+                            produit.vitesse = produit.vitesse/angelUpgrade.ratio
+                        }
+                        if (angelUpgrade.typeratio == "gain"){
+                            produit.revenu = produit.revenu*angelUpgrade.ratio
+                        }
+                        
+                    }
+                }
+                context.world.activeangels -= angelUpgrade.seuil
+                saveWorld(context)
+                return angelUpgrade
+            }
         }
-    }
+    },
 };
-
