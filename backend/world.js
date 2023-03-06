@@ -19,7 +19,7 @@ module.exports = {
             "quantite": 1,
             "timeleft": 0,
             "managerUnlocked": false,
-            "palliers": [
+            "paliers": [
                 {
                     "name": "20 vues",
                     "logo": "icones/premierpalier.jpg",
@@ -86,12 +86,12 @@ module.exports = {
             "quantite": 0,
             "timeleft": 0,
             "managerUnlocked": false,
-            "palliers": [
+            "paliers": [
                 {
                     "name": "20 vues",
                     "logo": "icones/premierpalier.jpg",
                     "seuil": 20,
-                    "idcible": 1,
+                    "idcible": 2,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -100,7 +100,7 @@ module.exports = {
                     "name": "75 vues",
                     "logo": "icones/deuxiemepalier.jpg",
                     "seuil": 75,
-                    "idcible": 1,
+                    "idcible": 2,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -109,7 +109,7 @@ module.exports = {
                     "name": "100 vues",
                     "logo": "icones/troisiemepalier.jpg",
                     "seuil": 100,
-                    "idcible": 1,
+                    "idcible": 2,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -118,7 +118,7 @@ module.exports = {
                     "name": "500 vues",
                     "logo": "icones/quatriemepalier.jpg",
                     "seuil": 500,
-                    "idcible": 1,
+                    "idcible": 2,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -127,7 +127,7 @@ module.exports = {
                     "name": "1000 vues",
                     "logo": "icones/cinquiemepalier.jpg",
                     "seuil": 1000,
-                    "idcible": 1,
+                    "idcible": 2,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -136,7 +136,7 @@ module.exports = {
                     "name": "5000 vues",
                     "logo": "icones/sixiemepalier.jpg",
                     "seuil": 5000,
-                    "idcible": 1,
+                    "idcible": 2,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -153,12 +153,12 @@ module.exports = {
             "quantite": 0,
             "timeleft": 0,
             "managerUnlocked": false,
-            "palliers": [
+            "paliers": [
                 {
                     "name": "20 vues",
                     "logo": "icones/premierpalier.jpg",
                     "seuil": 20,
-                    "idcible": 1,
+                    "idcible": 3,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -167,7 +167,7 @@ module.exports = {
                     "name": "75 vues",
                     "logo": "icones/deuxiemepalier.jpg",
                     "seuil": 75,
-                    "idcible": 1,
+                    "idcible": 3,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -176,7 +176,7 @@ module.exports = {
                     "name": "100 vues",
                     "logo": "icones/troisiemepalier.jpg",
                     "seuil": 100,
-                    "idcible": 1,
+                    "idcible": 3,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -185,7 +185,7 @@ module.exports = {
                     "name": "500 vues",
                     "logo": "icones/quatriemepalier.jpg",
                     "seuil": 500,
-                    "idcible": 1,
+                    "idcible": 3,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -194,7 +194,7 @@ module.exports = {
                     "name": "1000 vues",
                     "logo": "icones/cinquiemepalier.jpg",
                     "seuil": 1000,
-                    "idcible": 1,
+                    "idcible": 3,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -203,7 +203,7 @@ module.exports = {
                     "name": "5000 vues",
                     "logo": "icones/sixiemepalier.jpg",
                     "seuil": 5000,
-                    "idcible": 1,
+                    "idcible": 3,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -220,12 +220,12 @@ module.exports = {
             "quantite": 0,
             "timeleft": 0,
             "managerUnlocked": false,
-            "palliers": [
+            "paliers": [
                 {
                     "name": "20 vues",
                     "logo": "icones/premierpalier.jpg",
                     "seuil": 20,
-                    "idcible": 1,
+                    "idcible": 4,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -234,7 +234,7 @@ module.exports = {
                     "name": "75 vues",
                     "logo": "icones/deuxiemepalier.jpg",
                     "seuil": 75,
-                    "idcible": 1,
+                    "idcible": 4,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -243,7 +243,7 @@ module.exports = {
                     "name": "100 vues",
                     "logo": "icones/troisiemepalier.jpg",
                     "seuil": 100,
-                    "idcible": 1,
+                    "idcible": 4,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -252,7 +252,7 @@ module.exports = {
                     "name": "500 vues",
                     "logo": "icones/quatriemepalier.jpg",
                     "seuil": 500,
-                    "idcible": 1,
+                    "idcible": 4,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -261,7 +261,7 @@ module.exports = {
                     "name": "1000 vues",
                     "logo": "icones/cinquiemepalier.jpg",
                     "seuil": 1000,
-                    "idcible": 1,
+                    "idcible": 4,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -270,7 +270,7 @@ module.exports = {
                     "name": "5000 vues",
                     "logo": "icones/sixiemepalier.jpg",
                     "seuil": 5000,
-                    "idcible": 1,
+                    "idcible": 4,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -287,12 +287,12 @@ module.exports = {
             "quantite": 0,
             "timeleft": 0,
             "managerUnlocked": false,
-            "palliers": [
+            "paliers": [
                 {
                     "name": "20 vues",
                     "logo": "icones/premierpalier.jpg",
                     "seuil": 20,
-                    "idcible": 1,
+                    "idcible": 5,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -301,7 +301,7 @@ module.exports = {
                     "name": "75 vues",
                     "logo": "icones/deuxiemepalier.jpg",
                     "seuil": 75,
-                    "idcible": 1,
+                    "idcible": 5,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -310,7 +310,7 @@ module.exports = {
                     "name": "100 vues",
                     "logo": "icones/troisiemepalier.jpg",
                     "seuil": 100,
-                    "idcible": 1,
+                    "idcible": 5,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -319,7 +319,7 @@ module.exports = {
                     "name": "500 vues",
                     "logo": "icones/quatriemepalier.jpg",
                     "seuil": 500,
-                    "idcible": 1,
+                    "idcible": 5,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -328,7 +328,7 @@ module.exports = {
                     "name": "1000 vues",
                     "logo": "icones/cinquiemepalier.jpg",
                     "seuil": 1000,
-                    "idcible": 1,
+                    "idcible": 5,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -337,7 +337,7 @@ module.exports = {
                     "name": "5000 vues",
                     "logo": "icones/sixiemepalier.jpg",
                     "seuil": 5000,
-                    "idcible": 1,
+                    "idcible": 5,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -354,12 +354,12 @@ module.exports = {
             "quantite": 0,
             "timeleft": 0,
             "managerUnlocked": false,
-            "palliers": [
+            "paliers": [
                 {
                     "name": "20 vues",
                     "logo": "icones/premierpalier.jpg",
                     "seuil": 20,
-                    "idcible": 1,
+                    "idcible": 6,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -368,7 +368,7 @@ module.exports = {
                     "name": "75 vues",
                     "logo": "icones/deuxiemepalier.jpg",
                     "seuil": 75,
-                    "idcible": 1,
+                    "idcible": 6,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -377,7 +377,7 @@ module.exports = {
                     "name": "100 vues",
                     "logo": "icones/troisiemepalier.jpg",
                     "seuil": 100,
-                    "idcible": 1,
+                    "idcible": 6,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -386,7 +386,7 @@ module.exports = {
                     "name": "500 vues",
                     "logo": "icones/quatriemepalier.jpg",
                     "seuil": 500,
-                    "idcible": 1,
+                    "idcible": 6,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -395,7 +395,7 @@ module.exports = {
                     "name": "1000 vues",
                     "logo": "icones/cinquiemepalier.jpg",
                     "seuil": 1000,
-                    "idcible": 1,
+                    "idcible": 6,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -404,7 +404,7 @@ module.exports = {
                     "name": "5000 vues",
                     "logo": "icones/sixiemepalier.jpg",
                     "seuil": 5000,
-                    "idcible": 1,
+                    "idcible": 6,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -416,9 +416,9 @@ module.exports = {
             "name": "20 abonnés",
             "logo": "icones/20abonnes.jpg",
             "seuil": 20,
-            "idcible": 0,
+            "idcible": 6,
             "ratio": 2,
-            "typeratio": "ange",
+            "typeratio": "vitesse",
             "unlocked": false
         }, 
         {
@@ -434,18 +434,18 @@ module.exports = {
             "name": "75 abonnés",
             "logo": "icones/75abonnes.jpg",
             "seuil": 75,
-            "idcible": 0,
+            "idcible": 4,
             "ratio": 2,
-            "typeratio": "ange",
+            "typeratio": "gain",
             "unlocked": false
         }, 
         {
             "name": "100 abonnés",
             "logo": "icones/TropheeArgent.jpg",
             "seuil": 100,
-            "idcible": 0,
+            "idcible": 2,
             "ratio": 2,
-            "typeratio": "ange",
+            "typeratio": "vitesse",
             "unlocked": false
         }, 
         {
@@ -461,9 +461,9 @@ module.exports = {
             "name": "10000 abonnés",
             "logo": "icones/TropheeDiamant.jpg",
             "seuil": 10000,
-            "idcible": 0,
+            "idcible": 5,
             "ratio": 2,
-            "typeratio": "ange",
+            "typeratio": "gain",
             "unlocked": false
         }
     ],

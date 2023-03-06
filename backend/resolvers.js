@@ -1,9 +1,8 @@
-var { lastupdate } = require("./world");
-
 const fs = require("fs").promises
 
 function saveWorld(context) {
-    fs.writeFile("userworlds/" + context.user + "-world.json",
+    console.log("Je sauvegarde")
+    fs.writeFile("../userworlds/" + context.user + "-world.json",
         JSON.stringify(context.world), err => {
             if (err) {
                 console.error(err)
@@ -14,21 +13,21 @@ function saveWorld(context) {
 };
 
 function scalcScore(context) {
+
     let tempsEcoule = Date.now() - parseInt(context.world.lastupdate)
-
     let nbProduction = 0
+    console.log("Je calcule le score")
 
-    for (p in context.world.products) {
+    context.world.products.forEach(p => {
 
         if (p.managerUnlocked) {
             if (p.timeleft > 0) {
                 tempsEcouleProduit = tempsEcoule - p.timeleft
-                if (tempsEcouleProduit < 0) p.timeleft -= tempsEcoule
+                if (tempsEcouleProduit < 0) {p.timeleft -= tempsEcoule}
                 else {
-
                     nbProduction = (tempsEcouleProduit / p.vitesse) + 1
                     p.timeleft = tempsEcouleProduit % p.vitesse
-                }
+                }         
             } else {
                 p.timeleft -= tempsEcoule
                 if (p.timeleft <= 0) {
@@ -36,12 +35,18 @@ function scalcScore(context) {
                     p.timeleft = 0
                 }
             }
-            context.world.score = context.world.score + nbProduction * p.revenu * p.quantite
+        }else{
+            if(p.timeleft != 0 && p.timeleft < tempsEcoule){
+                nbProduction=1
+                p.timeleft=0
+            }
         }
-        
-    }
+
+        context.world.score += nbProduction * p.revenu * p.quantite * (1 + context.world.activeangels * context.world.angelbonus / 100)
+        context.world.bonus += nbProduction * p.revenu * p.quantite * (1 + context.world.activeangels * context.world.angelbonus / 100)
+    })
+
     context.world.lastupdate = String(Date.now())
-    saveWorld(context)
 };
 
 
@@ -73,46 +78,53 @@ module.exports = {
                 produit.cout = produit.cout * Math.pow(produit.croissance, args.quantite)
 
                 // on vérifie si il y a un unlock a débloquer
-                for (u in produit.pallier){
-                    if (u.idcible == produit.id && produit.quantite >= u.seuil){
+                produit.paliers.forEach(u =>  {
+                    if (u.idcible == produit.id && produit.quantite >= u.seuil) {
                         u.undefined = true
-                        if (u.typeratio == "vitesse"){
-                            produit.vitesse = produit.vitesse/u.ratio
+                        if (u.typeratio == "vitesse") {
+                            produit.vitesse = Math.round(produit.vitesse / u.ratio)
                         }
-                        if (u.typeratio == "gain"){
-                            produit.revenu = produit.revenu*u.ratio
+                        if (u.typeratio == "gain") {
+                            produit.revenu = produit.revenu * u.ratio
+                        }
+                        if (u.typeratio == "ange"){
+                            context.world.angelbonus += u.ratio
                         }
                     }
-                }
+                })
 
                 // on vérifie si des allunlocks sont débloqués
-                for(a in context.world.allunlocks){
-                    if (produit.quantite >= a.seuil){
+                context.world.allunlocks.forEach(a =>  {
+                    if (produit.quantite >= a.seuil) {
                         let allunlocks = true
                         // on parcours les produits pour savoir s'il ont tous un quantité suffisante
-                        for (p in context.world.products){
-                            if (p.quantite < seuil){
+                        context.world.products.forEach(p =>  {
+                            if (p.quantite < a.seuil) {
                                 allunlocks = false
                             }
-                        }
-                        if (allunlocks){
+                        })
+                        if (allunlocks) {
                             a.unlocked = true
-                            let produitCible = context.world.products.find(p => p.id === a.idcible)
-                            
-                            if (produitCible === undefined) {
-                                throw new Error(
-                                    `Le produit avec l'id ${a.idcible} n'existe pas`)
-                            } else {
-                                if (a.typeratio == "vitesse"){
-                                    produitCible.vitesse = produitCible.vitesse/a.ratio
-                                }
-                                if (a.typeratio == "gain"){
-                                    produitCible.revenu = produitCible.revenu*a.ratio
+                            if (a.typeratio == "ange"){
+                                context.world.angelbonus += a.ratio
+                            }else{
+                                let produitCible = context.world.products.find(p => p.id === a.idcible)
+
+                                if (produitCible === undefined) {
+                                    throw new Error(
+                                        `Le produit avec l'id ${a.idcible} n'existe pas`)
+                                } else {
+                                    if (a.typeratio == "vitesse") {
+                                        produitCible.vitesse = Math.round(produitCible.vitesse / a.ratio)
+                                    }
+                                    if (a.typeratio == "gain") {
+                                        produitCible.revenu = Math.round(produitCible.revenu * a.ratio)
+                                    }
                                 }
                             }
                         }
                     }
-                }
+                })
 
                 saveWorld(context)
                 return produit
@@ -142,8 +154,8 @@ module.exports = {
             if (produit === undefined) {
                 throw new Error(
                     `Le produit avec l'id ${manager.idcible} n'existe pas`)
-            } 
-            if (manager === undefined){
+            }
+            if (manager === undefined) {
                 throw new Error(
                     `Le manager avec le nom ${args.name} n'existe pas`)
 
@@ -153,96 +165,84 @@ module.exports = {
                 produit.managerUnlocked = true
 
                 saveWorld(context)
-                console.log(context.world)
                 return manager
             }
         },
-        acheterCashUpgrade(parent, args, context){
+        acheterCashUpgrade(parent, args, context) {
             scalcScore(context)
             let upgrade = context.world.upgrades.find(up => up.name === args.name)
 
-            if (upgrade === undefined){
+            if (upgrade === undefined) {
                 throw new Error(
                     `L'upgrade avec le nom ${args.name} n'existe pas`)
 
             } else {
-                if(context.world.money >= upgrade.seuil){
-                    upgrade.unlocked = true
-                    context.world.money -= upgrade.seuil
+                
+                upgrade.unlocked = true
+                context.world.money -= upgrade.seuil
 
-                    let produit = context.world.products.find(p => p.id === upgrade.idcible)
+                let produit = context.world.products.find(p => p.id === upgrade.idcible)
 
-                    if (produit === undefined){
-                        throw new Error(
-                            `Le produit avec l'id ${upgrade.idcible} n'existe pas`)
-                    } else {
-                        if (upgrade.typeratio == "vitesse"){
-                            produit.vitesse = produit.vitesse/upgrade.ratio
-                        }
-                        if (upgrade.typeratio == "gain"){
-                            produit.revenu = produit.revenu*upgrade.ratio
-                        }   
+                if (produit === undefined) {
+                    throw new Error(
+                        `Le produit avec l'id ${upgrade.idcible} n'existe pas`)
+                } else {
+                    if (upgrade.typeratio == "vitesse") {
+                        produit.vitesse = Math.round(produit.vitesse / upgrade.ratio)
+                    }
+                    if (upgrade.typeratio == "gain") {
+                        produit.revenu = produit.revenu * upgrade.ratio
                     }
                 }
+                
             }
             saveWorld(context)
             return upgrade
         },
-        resetWorld(parent, args, context){
+        resetWorld(parent, args, context) {
             scalcScore(context)
 
-            //context.world.totalangels += 150*Math.sqrt(context.world.score/Math.pow(10,15))
-            //context.world.activeangels += 150*Math.sqrt(context.world.score/Math.pow(10,15))
+            context.world.totalangels = Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 15)))
+            context.world.activeangels += Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 15))) - context.world.totalangels
 
-            let score = context.world.score
             let totalangels = context.world.totalangels
             let activeangels = context.world.activeangels
 
             let world = require("./world")
-
+            
             context.world = world
 
-            //context.world.score = score
-            //context.world.totalangels = totalangels
-            //context.world.activeangels = activeangels
+            context.world.totalangels = totalangels
+            context.world.activeangels = activeangels
 
-            context.world.score = 1000
-            context.world.totalangels = 1000
-            context.world.activeangels = 1000
-            context.world.money = 1000000000
-
-
-            for(p in context.world.products){
-                p.revenu = p.revenu * (1+(context.world.activeangels*context.world.angelbonus/100))
-            }
-
+            scalcScore(context)
             saveWorld(context)
             return context.world
-        }, 
-        acheterAngelUpgrade(parent, args, context){
+        },
+        acheterAngelUpgrade(parent, args, context) {
             scalcScore(context)
             let angelUpgrade = context.world.angelupgrades.find(angelUp => angelUp.name === args.name)
 
-            if (angelUpgrade === undefined){
+            if (angelUpgrade === undefined) {
                 throw new Error(
                     `Le angelUpgrade avec le nom ${args.name} n'existe pas`)
             } else {
                 angelUpgrade.unlocked = true
 
-                if (angelUpgrade.typeratio == "ange"){
-                    context.world.angelbonus += context.world.angelbonus*angelUpgrade.ratio/100
+                if (angelUpgrade.typeratio == "ange") {
+                    context.world.angelbonus += angelUpgrade.ratio
 
-                }else{
-                    for(produit in context.world.products){
-                   
-                        if (angelUpgrade.typeratio == "vitesse"){
-                            produit.vitesse = produit.vitesse/angelUpgrade.ratio
+                } else {
+                    context.world.products.forEach(produit => {
+
+                        if (angelUpgrade.typeratio == "vitesse") {
+                            produit.vitesse = Math.round(produit.vitesse / angelUpgrade.ratio)
                         }
-                        if (angelUpgrade.typeratio == "gain"){
-                            produit.revenu = produit.revenu*angelUpgrade.ratio
+                        if (angelUpgrade.typeratio == "gain") {
+                            produit.revenu = produit.revenu * angelUpgrade.ratio
                         }
-                        
-                    }
+
+                    })
                 }
                 context.world.activeangels -= angelUpgrade.seuil
                 saveWorld(context)
