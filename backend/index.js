@@ -4,7 +4,6 @@ async function readUserWorld(user) {
     return JSON.parse(data);
     }
     catch (error) {
-        console.log("coucou"+user)
         console.log(error)
         return world
     }

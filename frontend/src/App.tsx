@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './style.css';
 import { gql, useApolloClient, useQuery } from '@apollo/client';
 import Main from './Main';
+import { Product } from './world';
+import ProductComponent from './Product';
 
 //a voir si ça marche 
 const GET_WORLD = gql`
@@ -77,57 +80,63 @@ const GET_WORLD = gql`
   }
 `;
 
-  
+
 
 function App() {
- 
+
   //ici on met toutes les const
   const client = useApolloClient();
 
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("toto");
+
+  //let world = require("./world")
+
   
-  
+
   useEffect(() => {
     let lusername = localStorage.getItem("username");
-    if (lusername===undefined) {
-      lusername="Youtubeur " + Math.floor(Math.random() * 10000);
+    if (lusername === undefined) {
+      lusername = "Youtubeur " + Math.floor(Math.random() * 10000);
       localStorage.setItem("username", lusername);
     }
-    if (lusername!==null) setUsername(lusername);
+    if (lusername !== null) {
+      console.log(lusername)
+      setUsername(lusername);
+      client.resetStore()
+      refetch()
+    }
   }, []);
 
+  const { loading, error, data, refetch } = useQuery(GET_WORLD, {
+    context: { headers: { "x-user": username } }
+  });
 
-  
   const onUserNameChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
-   
     localStorage.setItem("username", event.currentTarget.value);
     setUsername(event.currentTarget.value);
     // forcer le client Apollo à refabriquer la requête
     client.resetStore()
     console.log(event.currentTarget.value);
-
   };
 
-  const {loading, error, data, refetch } = useQuery(GET_WORLD, {
-    context: { headers: { "x-user": username } }
-   });
-    
-   
+  //const lastupdate = useRef(Date.now()); //à mémoriser la date de dernière mise à jour du produit
 
-   let corps = undefined
-   if (loading) corps = <div> Loading... </div>
-   else if (error) corps = <div> Erreur de chargement du monde ! </div>
-   else corps =<Main loadworld={data.getWorld} username={username} />
-   
-   
+
+
+
+  let corps = undefined
+  if (loading) corps = <div> Loading... </div>
+  else if (error) corps = <div> Erreur de chargement du monde ! </div>
+  else corps = <Main loadworld={data.getWorld} username={username} />
 
   return (
     //App est le div racine - obligatoire en react
     <div>
-    <div> Votre ID :</div>
-    <input type="text" value={username} onChange={onUserNameChanged}/>
-    { corps }
-  </div>
+
+      <div> Votre ID :</div>
+      <input type="text" value={username} onChange={onUserNameChanged} />
+      {corps}
+    </div>
   );
 
 }
