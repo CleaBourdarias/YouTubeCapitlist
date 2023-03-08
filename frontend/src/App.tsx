@@ -87,7 +87,7 @@ function App() {
   //ici on met toutes les const
   const client = useApolloClient();
 
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("toto");
 
   //let world = require("./world")
 
@@ -99,10 +99,17 @@ function App() {
       lusername = "Youtubeur " + Math.floor(Math.random() * 10000);
       localStorage.setItem("username", lusername);
     }
-    if (lusername !== null) setUsername(lusername);
+    if (lusername !== null) {
+      console.log(lusername)
+      setUsername(lusername);
+      client.resetStore()
+      refetch()
+    }
   }, []);
 
-
+  const { loading, error, data, refetch } = useQuery(GET_WORLD, {
+    context: { headers: { "x-user": username } }
+  });
 
   const onUserNameChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
     localStorage.setItem("username", event.currentTarget.value);
@@ -114,9 +121,7 @@ function App() {
 
   //const lastupdate = useRef(Date.now()); //à mémoriser la date de dernière mise à jour du produit
 
-  const { loading, error, data, refetch } = useQuery(GET_WORLD, {
-    context: { headers: { "x-user": username } }
-  });
+
 
 
   let corps = undefined

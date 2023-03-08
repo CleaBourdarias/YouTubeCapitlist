@@ -202,8 +202,10 @@ module.exports = {
         resetWorld(parent, args, context) {
             scalcScore(context)
 
-            context.world.totalangels = Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 15)))
-            context.world.activeangels += Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 15))) - context.world.totalangels
+            if ((Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 15))) - context.world.totalangels)<0){
+                context.world.activeangels += Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 15))) - context.world.totalangels
+                context.world.totalangels = Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 15)))
+            }
 
             let totalangels = context.world.totalangels
             let activeangels = context.world.activeangels
@@ -231,7 +233,6 @@ module.exports = {
 
                 if (angelUpgrade.typeratio == "ange") {
                     context.world.angelbonus += angelUpgrade.ratio
-
                 } else {
                     context.world.products.forEach(produit => {
 

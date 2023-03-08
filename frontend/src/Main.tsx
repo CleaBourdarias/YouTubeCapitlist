@@ -26,6 +26,13 @@ export default function Main({ loadworld, username }: MainProps) {
     addToScore(gain)
   }
 
+  function onProductBuy(p: Product) {
+    if(money >= p.cout){
+      p.quantite += 1;
+      console.log(p.quantite)
+    }
+}
+
   function addToScore(gain: number) {
     world.score = world.score + gain;
 }
@@ -53,10 +60,10 @@ function handleChange() {
     <div className="App">
 
       <div className="header">
-        <div> <img className="square" src={"https://isiscapitalistgraphql.kk.kurasawa.fr/" + world.logo} /> </div>
+        <div> <img className="square" src={"http://localhost:4000/" + world.logo} /> </div>
         <span> {world.name} </span>
         <div> argent </div>
-        <span dangerouslySetInnerHTML={{ __html: transform(world.money) }} />
+        <span dangerouslySetInnerHTML={{ __html: transform(world.money)}}/>
         <div> multiplicateur </div>
 
       </div>
@@ -67,12 +74,12 @@ function handleChange() {
           
           
             <div className="product">
-            <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} product={world.products[0]} money={money} />
-            <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} product={world.products[1]} money={money} />
-            <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} product={world.products[2]} money={money} />
-            <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} product={world.products[3]} money={money} />
-            <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} product={world.products[4]} money={money} />
-            <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} product={world.products[5]} money={money} />
+            <ProductComponent onProductionDone={onProductionDone} onProductBuy={onProductBuy} qtmulti={qtmulti} product={world.products[0]} money={money} />
+            <ProductComponent onProductionDone={onProductionDone} onProductBuy={onProductBuy} qtmulti={qtmulti} product={world.products[1]} money={money} />
+            <ProductComponent onProductionDone={onProductionDone} onProductBuy={onProductBuy} qtmulti={qtmulti} product={world.products[2]} money={money} />
+            <ProductComponent onProductionDone={onProductionDone} onProductBuy={onProductBuy} qtmulti={qtmulti} product={world.products[3]} money={money} />
+            <ProductComponent onProductionDone={onProductionDone} onProductBuy={onProductBuy} qtmulti={qtmulti} product={world.products[4]} money={money} />
+            <ProductComponent onProductionDone={onProductionDone} onProductBuy={onProductBuy} qtmulti={qtmulti} product={world.products[5]} money={money} />
           </div>
           
           

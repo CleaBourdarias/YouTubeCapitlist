@@ -1,6 +1,6 @@
 module.exports = {
     "name": "YouTube",
-    "logo": "icones/logomonde.jpg",
+    "logo": "icons/logomonde.jpg",
     "money": 0,
     "score": 0,
     "totalangels": 0,
@@ -22,7 +22,7 @@ module.exports = {
             "paliers": [
                 {
                     "name": "20 vues",
-                    "logo": "icones/premierpalier.jpg",
+                    "logo": "icons/premierpalier.jpg",
                     "seuil": 20,
                     "idcible": 1,
                     "ratio": 2,
@@ -31,7 +31,7 @@ module.exports = {
                 },
                 {
                     "name": "75 vues",
-                    "logo": "icones/deuxiemepalier.jpg",
+                    "logo": "icons/deuxiemepalier.jpg",
                     "seuil": 75,
                     "idcible": 1,
                     "ratio": 2,
@@ -40,7 +40,7 @@ module.exports = {
                 },
                 {
                     "name": "100 vues",
-                    "logo": "icones/troisiemepalier.jpg",
+                    "logo": "icons/troisiemepalier.jpg",
                     "seuil": 100,
                     "idcible": 1,
                     "ratio": 2,
@@ -49,7 +49,7 @@ module.exports = {
                 },
                 {
                     "name": "500 vues",
-                    "logo": "icones/quatriemepalier.jpg",
+                    "logo": "icons/quatriemepalier.jpg",
                     "seuil": 500,
                     "idcible": 1,
                     "ratio": 2,
@@ -58,7 +58,7 @@ module.exports = {
                 },
                 {
                     "name": "1000 vues",
-                    "logo": "icones/cinquiemepalier.jpg",
+                    "logo": "icons/cinquiemepalier.jpg",
                     "seuil": 1000,
                     "idcible": 1,
                     "ratio": 2,
@@ -67,7 +67,7 @@ module.exports = {
                 },
                 {
                     "name": "5000 vues",
-                    "logo": "icones/sixiemepalier.jpg",
+                    "logo": "icons/sixiemepalier.jpg",
                     "seuil": 5000,
                     "idcible": 1,
                     "ratio": 2,
@@ -78,7 +78,7 @@ module.exports = {
         {
             "id": 2,
             "name": "Essayer de ne pas rire",
-            "logo": "icones/EssayePasRire.jpg",
+            "logo": "icons/EssayePasRire.jpg",
             "cout": 60,
             "croissance": 1.15,
             "revenu": 60,
@@ -89,7 +89,7 @@ module.exports = {
             "paliers": [
                 {
                     "name": "20 vues",
-                    "logo": "icones/premierpalier.jpg",
+                    "logo": "icons/premierpalier.jpg",
                     "seuil": 20,
                     "idcible": 2,
                     "ratio": 2,
@@ -98,7 +98,7 @@ module.exports = {
                 },
                 {
                     "name": "75 vues",
-                    "logo": "icones/deuxiemepalier.jpg",
+                    "logo": "icons/deuxiemepalier.jpg",
                     "seuil": 75,
                     "idcible": 2,
                     "ratio": 2,
@@ -107,7 +107,7 @@ module.exports = {
                 },
                 {
                     "name": "100 vues",
-                    "logo": "icones/troisiemepalier.jpg",
+                    "logo": "icons/troisiemepalier.jpg",
                     "seuil": 100,
                     "idcible": 2,
                     "ratio": 2,
@@ -116,7 +116,7 @@ module.exports = {
                 },
                 {
                     "name": "500 vues",
-                    "logo": "icones/quatriemepalier.jpg",
+                    "logo": "icons/quatriemepalier.jpg",
                     "seuil": 500,
                     "idcible": 2,
                     "ratio": 2,
@@ -125,7 +125,7 @@ module.exports = {
                 },
                 {
                     "name": "1000 vues",
-                    "logo": "icones/cinquiemepalier.jpg",
+                    "logo": "icons/cinquiemepalier.jpg",
                     "seuil": 1000,
                     "idcible": 2,
                     "ratio": 2,
@@ -134,7 +134,7 @@ module.exports = {
                 },
                 {
                     "name": "5000 vues",
-                    "logo": "icones/sixiemepalier.jpg",
+                    "logo": "icons/sixiemepalier.jpg",
                     "seuil": 5000,
                     "idcible": 2,
                     "ratio": 2,
@@ -145,7 +145,7 @@ module.exports = {
         {
             "id": 3,
             "name": "On appelle des gens au hasard",
-            "logo": "icones/AppelleGensHasard.jpg",
+            "logo": "icons/AppelleGensHasard.jpg",
             "cout": 720,
             "croissance": 1.14,
             "revenu": 540,
@@ -156,7 +156,7 @@ module.exports = {
             "paliers": [
                 {
                     "name": "20 vues",
-                    "logo": "icones/premierpalier.jpg",
+                    "logo": "icons/premierpalier.jpg",
                     "seuil": 20,
                     "idcible": 3,
                     "ratio": 2,
@@ -165,7 +165,7 @@ module.exports = {
                 },
                 {
                     "name": "75 vues",
-                    "logo": "icones/deuxiemepalier.jpg",
+                    "logo": "icons/deuxiemepalier.jpg",
                     "seuil": 75,
                     "idcible": 3,
                     "ratio": 2,
@@ -174,7 +174,7 @@ module.exports = {
                 },
                 {
                     "name": "100 vues",
-                    "logo": "icones/troisiemepalier.jpg",
+                    "logo": "icons/troisiemepalier.jpg",
                     "seuil": 100,
                     "idcible": 3,
                     "ratio": 2,
@@ -183,7 +183,7 @@ module.exports = {
                 },
                 {
                     "name": "500 vues",
-                    "logo": "icones/quatriemepalier.jpg",
+                    "logo": "icons/quatriemepalier.jpg",
                     "seuil": 500,
                     "idcible": 3,
                     "ratio": 2,
@@ -192,7 +192,7 @@ module.exports = {
                 },
                 {
                     "name": "1000 vues",
-                    "logo": "icones/cinquiemepalier.jpg",
+                    "logo": "icons/cinquiemepalier.jpg",
                     "seuil": 1000,
                     "idcible": 3,
                     "ratio": 2,
@@ -201,7 +201,7 @@ module.exports = {
                 },
                 {
                     "name": "5000 vues",
-                    "logo": "icones/sixiemepalier.jpg",
+                    "logo": "icons/sixiemepalier.jpg",
                     "seuil": 5000,
                     "idcible": 3,
                     "ratio": 2,
@@ -212,7 +212,7 @@ module.exports = {
         {
             "id": 4,
             "name": "Vlogs d'Aout",
-            "logo": "icones/VlogsAout.jpg",
+            "logo": "icons/VlogsAout.jpg",
             "cout": 8640,
             "croissance": 1.13,
             "revenu": 4320,
@@ -223,7 +223,7 @@ module.exports = {
             "paliers": [
                 {
                     "name": "20 vues",
-                    "logo": "icones/premierpalier.jpg",
+                    "logo": "icons/premierpalier.jpg",
                     "seuil": 20,
                     "idcible": 4,
                     "ratio": 2,
@@ -232,7 +232,7 @@ module.exports = {
                 },
                 {
                     "name": "75 vues",
-                    "logo": "icones/deuxiemepalier.jpg",
+                    "logo": "icons/deuxiemepalier.jpg",
                     "seuil": 75,
                     "idcible": 4,
                     "ratio": 2,
@@ -241,7 +241,7 @@ module.exports = {
                 },
                 {
                     "name": "100 vues",
-                    "logo": "icones/troisiemepalier.jpg",
+                    "logo": "icons/troisiemepalier.jpg",
                     "seuil": 100,
                     "idcible": 4,
                     "ratio": 2,
@@ -250,7 +250,7 @@ module.exports = {
                 },
                 {
                     "name": "500 vues",
-                    "logo": "icones/quatriemepalier.jpg",
+                    "logo": "icons/quatriemepalier.jpg",
                     "seuil": 500,
                     "idcible": 4,
                     "ratio": 2,
@@ -259,7 +259,7 @@ module.exports = {
                 },
                 {
                     "name": "1000 vues",
-                    "logo": "icones/cinquiemepalier.jpg",
+                    "logo": "icons/cinquiemepalier.jpg",
                     "seuil": 1000,
                     "idcible": 4,
                     "ratio": 2,
@@ -268,7 +268,7 @@ module.exports = {
                 },
                 {
                     "name": "5000 vues",
-                    "logo": "icones/sixiemepalier.jpg",
+                    "logo": "icons/sixiemepalier.jpg",
                     "seuil": 5000,
                     "idcible": 4,
                     "ratio": 2,
@@ -279,7 +279,7 @@ module.exports = {
         {
             "id": 5,
             "name": "On accoste des gens en voiture",
-            "logo": "icones/AccosteGensVoiture.jpg",
+            "logo": "icons/AccosteGensVoiture.jpg",
             "cout": 103680,
             "croissance": 1.12,
             "revenu": 51840,
@@ -290,7 +290,7 @@ module.exports = {
             "paliers": [
                 {
                     "name": "20 vues",
-                    "logo": "icones/premierpalier.jpg",
+                    "logo": "icons/premierpalier.jpg",
                     "seuil": 20,
                     "idcible": 5,
                     "ratio": 2,
@@ -299,7 +299,7 @@ module.exports = {
                 },
                 {
                     "name": "75 vues",
-                    "logo": "icones/deuxiemepalier.jpg",
+                    "logo": "icons/deuxiemepalier.jpg",
                     "seuil": 75,
                     "idcible": 5,
                     "ratio": 2,
@@ -308,7 +308,7 @@ module.exports = {
                 },
                 {
                     "name": "100 vues",
-                    "logo": "icones/troisiemepalier.jpg",
+                    "logo": "icons/troisiemepalier.jpg",
                     "seuil": 100,
                     "idcible": 5,
                     "ratio": 2,
@@ -317,7 +317,7 @@ module.exports = {
                 },
                 {
                     "name": "500 vues",
-                    "logo": "icones/quatriemepalier.jpg",
+                    "logo": "icons/quatriemepalier.jpg",
                     "seuil": 500,
                     "idcible": 5,
                     "ratio": 2,
@@ -326,7 +326,7 @@ module.exports = {
                 },
                 {
                     "name": "1000 vues",
-                    "logo": "icones/cinquiemepalier.jpg",
+                    "logo": "icons/cinquiemepalier.jpg",
                     "seuil": 1000,
                     "idcible": 5,
                     "ratio": 2,
@@ -335,7 +335,7 @@ module.exports = {
                 },
                 {
                     "name": "5000 vues",
-                    "logo": "icones/sixiemepalier.jpg",
+                    "logo": "icons/sixiemepalier.jpg",
                     "seuil": 5000,
                     "idcible": 5,
                     "ratio": 2,
@@ -346,7 +346,7 @@ module.exports = {
         {
             "id": 6,
             "name": "Le jeu de la scolarité",
-            "logo": "icones/JeuScolarite.jpg",
+            "logo": "icons/JeuScolarite.jpg",
             "cout": 1244160,
             "croissance": 1.11,
             "revenu": 622080,
@@ -357,7 +357,7 @@ module.exports = {
             "paliers": [
                 {
                     "name": "20 vues",
-                    "logo": "icones/premierpalier.jpg",
+                    "logo": "icons/premierpalier.jpg",
                     "seuil": 20,
                     "idcible": 6,
                     "ratio": 2,
@@ -366,7 +366,7 @@ module.exports = {
                 },
                 {
                     "name": "75 vues",
-                    "logo": "icones/deuxiemepalier.jpg",
+                    "logo": "icons/deuxiemepalier.jpg",
                     "seuil": 75,
                     "idcible": 6,
                     "ratio": 2,
@@ -375,7 +375,7 @@ module.exports = {
                 },
                 {
                     "name": "100 vues",
-                    "logo": "icones/troisiemepalier.jpg",
+                    "logo": "icons/troisiemepalier.jpg",
                     "seuil": 100,
                     "idcible": 6,
                     "ratio": 2,
@@ -384,7 +384,7 @@ module.exports = {
                 },
                 {
                     "name": "500 vues",
-                    "logo": "icones/quatriemepalier.jpg",
+                    "logo": "icons/quatriemepalier.jpg",
                     "seuil": 500,
                     "idcible": 6,
                     "ratio": 2,
@@ -393,7 +393,7 @@ module.exports = {
                 },
                 {
                     "name": "1000 vues",
-                    "logo": "icones/cinquiemepalier.jpg",
+                    "logo": "icons/cinquiemepalier.jpg",
                     "seuil": 1000,
                     "idcible": 6,
                     "ratio": 2,
@@ -402,7 +402,7 @@ module.exports = {
                 },
                 {
                     "name": "5000 vues",
-                    "logo": "icones/sixiemepalier.jpg",
+                    "logo": "icons/sixiemepalier.jpg",
                     "seuil": 5000,
                     "idcible": 6,
                     "ratio": 2,
@@ -414,7 +414,7 @@ module.exports = {
     "allunlocks": [
         {
             "name": "20 abonnés",
-            "logo": "icones/20abonnes.jpg",
+            "logo": "icons/20abonnes.jpg",
             "seuil": 20,
             "idcible": 6,
             "ratio": 2,
@@ -423,7 +423,7 @@ module.exports = {
         }, 
         {
             "name": "50 abonnés",
-            "logo": "icones/50abonnes.jpg",
+            "logo": "icons/50abonnes.jpg",
             "seuil": 50,
             "idcible": 0,
             "ratio": 2,
@@ -432,7 +432,7 @@ module.exports = {
         }, 
         {
             "name": "75 abonnés",
-            "logo": "icones/75abonnes.jpg",
+            "logo": "icons/75abonnes.jpg",
             "seuil": 75,
             "idcible": 4,
             "ratio": 2,
@@ -441,7 +441,7 @@ module.exports = {
         }, 
         {
             "name": "100 abonnés",
-            "logo": "icones/TropheeArgent.jpg",
+            "logo": "icons/TropheeArgent.jpg",
             "seuil": 100,
             "idcible": 2,
             "ratio": 2,
@@ -450,7 +450,7 @@ module.exports = {
         }, 
         {
             "name": "1000 abonnés",
-            "logo": "icones/TropheeOr.jpg",
+            "logo": "icons/TropheeOr.jpg",
             "seuil": 1000,
             "idcible": 0,
             "ratio": 2,
@@ -459,7 +459,7 @@ module.exports = {
         },
         {
             "name": "10000 abonnés",
-            "logo": "icones/TropheeDiamant.jpg",
+            "logo": "icons/TropheeDiamant.jpg",
             "seuil": 10000,
             "idcible": 5,
             "ratio": 2,
@@ -470,7 +470,7 @@ module.exports = {
     "upgrades": [
         {
             "name": "ft. Natoo",
-            "logo": "icones/Natoo.png",
+            "logo": "icons/Natoo.png",
             "seuil": 1e4,
             "idcible": 1,
             "ratio": 3,
@@ -479,7 +479,7 @@ module.exports = {
         },
         {
             "name": "ft. Theodort",
-            "logo": "icones/Theodort.png",
+            "logo": "icons/Theodort.png",
             "seuil": 1e4,
             "idcible": 5,
             "ratio": 3,
@@ -488,7 +488,7 @@ module.exports = {
         },
         {
             "name": "ft. Marcus",
-            "logo": "icones/Marcus.png",
+            "logo": "icons/Marcus.png",
             "seuil": 1e5,
             "idcible": 4,
             "ratio": 3,
@@ -497,7 +497,7 @@ module.exports = {
         },
         {
             "name": "ft. Solène",
-            "logo": "icones/Solene.png",
+            "logo": "icons/Solene.png",
             "seuil": 1e5,
             "idcible": 4,
             "ratio": 3,
@@ -506,7 +506,7 @@ module.exports = {
         },
         {
             "name": "ft. TheoBabac",
-            "logo": "icones/TheoBabac.png",
+            "logo": "icons/TheoBabac.png",
             "seuil": 1e6,
             "idcible": 2,
             "ratio": 3,
@@ -515,7 +515,7 @@ module.exports = {
         },
         {
             "name": "ft. Jonathan Cohen",
-            "logo": "icones/Jonathan.png",
+            "logo": "icons/Jonathan.png",
             "seuil": 1e6,
             "idcible": 3,
             "ratio": 3,
@@ -524,7 +524,7 @@ module.exports = {
         },
         {
             "name": "ft. Bastos",
-            "logo": "icones/Bastos.png",
+            "logo": "icons/Bastos.png",
             "seuil": 1e7,
             "idcible": 6,
             "ratio": 3,
@@ -533,7 +533,7 @@ module.exports = {
         },
         {
             "name": "ft. Pierre Niney",
-            "logo": "icones/PierreNiney.png",
+            "logo": "icons/PierreNiney.png",
             "seuil": 1e7,
             "idcible": 3,
             "ratio": 3,
@@ -542,7 +542,7 @@ module.exports = {
         },
         {
             "name": "ft. Amixem",
-            "logo": "icones/Amixem.png",
+            "logo": "icons/Amixem.png",
             "seuil": 1e8,
             "idcible": 5,
             "ratio": 3,
@@ -551,7 +551,7 @@ module.exports = {
         },
         {
             "name": "ft. Hctuan",
-            "logo": "icones/Hctuan.png",
+            "logo": "icons/Hctuan.png",
             "seuil": 1e8,
             "idcible": 2,
             "ratio": 3,
@@ -560,7 +560,7 @@ module.exports = {
         },
         {
             "name": "ft. Benjamin Verrecchia",
-            "logo": "icones/Benjamin.png",
+            "logo": "icons/Benjamin.png",
             "seuil": 1e9,
             "idcible": 6,
             "ratio": 3,
@@ -571,7 +571,7 @@ module.exports = {
     "angelupgrades": [
         {
             "name": "Placement de produit RhinoShield",
-            "logo": "icones/RhinoShield.png",
+            "logo": "icons/RhinoShield.png",
             "seuil": 10,
             "idcible": 0,
             "ratio": 3,
@@ -580,7 +580,7 @@ module.exports = {
         },
         {
             "name": "Placement de produit NordVPN",
-            "logo": "icones/angel.png",
+            "logo": "icons/angel.png",
             "seuil": 20,
             "idcible": 0,
             "ratio": 3,
@@ -589,7 +589,7 @@ module.exports = {
         },
         {
             "name": "Placement de produit iGraal",
-            "logo": "icones/iGraal.png",
+            "logo": "icons/iGraal.png",
             "seuil": 30,
             "idcible": 0,
             "ratio": 3,
@@ -598,7 +598,7 @@ module.exports = {
         },
         {
             "name": "Placement de produit Air Up",
-            "logo": "icones/AirUp.png",
+            "logo": "icons/AirUp.png",
             "seuil": 40,
             "idcible": 0,
             "ratio": 4,
@@ -607,7 +607,7 @@ module.exports = {
         },
         {
             "name": "Placement de produit Displate",
-            "logo": "icones/angel.png",
+            "logo": "icons/angel.png",
             "seuil": 50,
             "idcible": 0,
             "ratio": 4,
@@ -616,7 +616,7 @@ module.exports = {
         },
         {
             "name": "Placement de produit World of Tanks",
-            "logo": "icones/WorldTanks.png",
+            "logo": "icons/WorldTanks.png",
             "seuil": 60,
             "idcible": 0,
             "ratio": 4,
@@ -627,7 +627,7 @@ module.exports = {
     "managers": [
         {
             "name": "Squeezie",
-            "logo": "icones/Squeezie.png",
+            "logo": "icons/Squeezie.png",
             "seuil": 10,
             "idcible": 1,
             "ratio": 0,
@@ -636,7 +636,7 @@ module.exports = {
         },
         {
             "name": "Joyca",
-            "logo": "icones/Joyca.jpg",
+            "logo": "icons/Joyca.jpg",
             "seuil": 12,
             "idcible": 2,
             "ratio": 0,
@@ -645,7 +645,7 @@ module.exports = {
         },
         {
             "name": "McFly et Carlito",
-            "logo": "icones/McFlyCarlito.jpg",
+            "logo": "icons/McFlyCarlito.jpg",
             "seuil": 14,
             "idcible": 3,
             "ratio": 0,
@@ -654,7 +654,7 @@ module.exports = {
         },
         {
             "name": "Lena Situation",
-            "logo": "icones/WangariMaathai.jpg",
+            "logo": "icons/WangariMaathai.jpg",
             "seuil": 15,
             "idcible": 4,
             "ratio": 0,
@@ -663,7 +663,7 @@ module.exports = {
         },
         {
             "name": "Mastu",
-            "logo": "icones/Mastu.jpg",
+            "logo": "icons/Mastu.jpg",
             "seuil": 16,
             "idcible": 5,
             "ratio": 0,
@@ -672,7 +672,7 @@ module.exports = {
         },
         {
             "name": "Pierre Croce",
-            "logo": "icones/Pierre.jpg",
+            "logo": "icons/Pierre.jpg",
             "seuil": 20,
             "idcible": 6,
             "ratio": 0,
