@@ -89,11 +89,9 @@ function App() {
 
   const [username, setUsername] = useState("");
 
-  let world = require("./world")
+  //let world = require("./world")
 
-  const money = world.money;
-
-  const [qtmulti, setQtmulti] = useState("x1");
+  
 
   useEffect(() => {
     let lusername = localStorage.getItem("username");
@@ -107,47 +105,14 @@ function App() {
 
 
   const onUserNameChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
-
     localStorage.setItem("username", event.currentTarget.value);
     setUsername(event.currentTarget.value);
     // forcer le client Apollo à refabriquer la requête
     client.resetStore()
     console.log(event.currentTarget.value);
-
   };
 
-  const lastupdate = useRef(Date.now()); //à mémoriser la date de dernière mise à jour du produit
-
-  function onProductionDone(p: Product, qt : number): void {
-    // calcul de la somme obtenue par la production du produit
-    let gain =  p.revenu * qt * p.quantite; // le gain du nombre de produits générés depuis la dernière mise à jour
-    // ajout de la somme à l’argent possédé
-    addToScore(gain)
-  }
-
-  
-  function addToScore(gain: number) {
-      world.score = world.score + gain;
-  }
-
-  function handleChange() {
-    if(qtmulti==="x1"){
-      setQtmulti("x10");
-    }
-
-    if(qtmulti==="x10"){
-      setQtmulti("x100");
-    }
-
-    if(qtmulti==="x100"){
-      setQtmulti("Max");
-    }
-
-    if(qtmulti==="Max"){
-      setQtmulti("x1");
-    }
-  }
-
+  //const lastupdate = useRef(Date.now()); //à mémoriser la date de dernière mise à jour du produit
 
   const { loading, error, data, refetch } = useQuery(GET_WORLD, {
     context: { headers: { "x-user": username } }
@@ -166,18 +131,6 @@ function App() {
       <div> Votre ID :</div>
       <input type="text" value={username} onChange={onUserNameChanged} />
       {corps}
-      
-      <div className="product">
-        <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} product={world.products[0]} money={money} />
-        <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} product={world.products[1]} money={money} />
-        <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} product={world.products[2]} money={money} />
-        <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} product={world.products[3]} money={money} />
-        <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} product={world.products[4]} money={money} />
-        <ProductComponent onProductionDone={onProductionDone} qtmulti={qtmulti} product={world.products[5]} money={money} />
-      </div>
-      
-      <button onClick={() => handleChange()}>Clique</button>
-
     </div>
   );
 
