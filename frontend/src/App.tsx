@@ -84,14 +84,16 @@ const GET_WORLD = gql`
 
 function App() {
 
-  //ici on met toutes les const
-  const client = useApolloClient();
 
   const [username, setUsername] = useState("toto");
 
-  //let world = require("./world")
-
   
+
+  const client = useApolloClient();
+
+  const { loading, error, data, refetch } = useQuery(GET_WORLD, {
+    context: { headers: { "x-user": username } }
+  });
 
   useEffect(() => {
     let lusername = localStorage.getItem("username");
@@ -107,9 +109,7 @@ function App() {
     }
   }, []);
 
-  const { loading, error, data, refetch } = useQuery(GET_WORLD, {
-    context: { headers: { "x-user": username } }
-  });
+  
 
   const onUserNameChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
     localStorage.setItem("username", event.currentTarget.value);
