@@ -470,7 +470,7 @@ module.exports = {
     "upgrades": [
         {
             "name": "ft. Natoo",
-            "logo": "icons/Natoo.png",
+            "logo": "icons/Natoo.jpg",
             "seuil": 1e4,
             "idcible": 1,
             "ratio": 3,
@@ -479,7 +479,7 @@ module.exports = {
         },
         {
             "name": "ft. Theodort",
-            "logo": "icons/Theodort.png",
+            "logo": "icons/Theodort.jpg",
             "seuil": 1e4,
             "idcible": 5,
             "ratio": 3,
@@ -488,7 +488,7 @@ module.exports = {
         },
         {
             "name": "ft. Marcus",
-            "logo": "icons/Marcus.png",
+            "logo": "icons/Marcus.jpg",
             "seuil": 1e5,
             "idcible": 4,
             "ratio": 3,
@@ -497,7 +497,7 @@ module.exports = {
         },
         {
             "name": "ft. Solène",
-            "logo": "icons/Solene.png",
+            "logo": "icons/Solene.jpg",
             "seuil": 1e5,
             "idcible": 4,
             "ratio": 3,
@@ -506,7 +506,7 @@ module.exports = {
         },
         {
             "name": "ft. TheoBabac",
-            "logo": "icons/TheoBabac.png",
+            "logo": "icons/TheoBabac.jpg",
             "seuil": 1e6,
             "idcible": 2,
             "ratio": 3,
@@ -515,7 +515,7 @@ module.exports = {
         },
         {
             "name": "ft. Jonathan Cohen",
-            "logo": "icons/Jonathan.png",
+            "logo": "icons/Jonathan.jpg",
             "seuil": 1e6,
             "idcible": 3,
             "ratio": 3,
@@ -524,7 +524,7 @@ module.exports = {
         },
         {
             "name": "ft. Bastos",
-            "logo": "icons/Bastos.png",
+            "logo": "icons/Bastos.jpg",
             "seuil": 1e7,
             "idcible": 6,
             "ratio": 3,
@@ -533,7 +533,7 @@ module.exports = {
         },
         {
             "name": "ft. Pierre Niney",
-            "logo": "icons/PierreNiney.png",
+            "logo": "icons/PierreNiney.jpg",
             "seuil": 1e7,
             "idcible": 3,
             "ratio": 3,
@@ -542,7 +542,7 @@ module.exports = {
         },
         {
             "name": "ft. Amixem",
-            "logo": "icons/Amixem.png",
+            "logo": "icons/Amixem.jpg",
             "seuil": 1e8,
             "idcible": 5,
             "ratio": 3,
@@ -551,7 +551,7 @@ module.exports = {
         },
         {
             "name": "ft. Hctuan",
-            "logo": "icons/Hctuan.png",
+            "logo": "icons/Hctuan.jpg",
             "seuil": 1e8,
             "idcible": 2,
             "ratio": 3,
@@ -560,7 +560,7 @@ module.exports = {
         },
         {
             "name": "ft. Benjamin Verrecchia",
-            "logo": "icons/Benjamin.png",
+            "logo": "icons/Benjamin.jpg",
             "seuil": 1e9,
             "idcible": 6,
             "ratio": 3,
@@ -571,7 +571,7 @@ module.exports = {
     "angelupgrades": [
         {
             "name": "Placement de produit RhinoShield",
-            "logo": "icons/RhinoShield.png",
+            "logo": "icons/RhinoShield.jpg",
             "seuil": 10,
             "idcible": 0,
             "ratio": 3,
@@ -580,7 +580,7 @@ module.exports = {
         },
         {
             "name": "Placement de produit NordVPN",
-            "logo": "icons/angel.png",
+            "logo": "icons/NordVPN.jpg",
             "seuil": 20,
             "idcible": 0,
             "ratio": 3,
@@ -589,7 +589,7 @@ module.exports = {
         },
         {
             "name": "Placement de produit iGraal",
-            "logo": "icons/iGraal.png",
+            "logo": "icons/iGraal.jpg",
             "seuil": 30,
             "idcible": 0,
             "ratio": 3,
@@ -598,7 +598,7 @@ module.exports = {
         },
         {
             "name": "Placement de produit Air Up",
-            "logo": "icons/AirUp.png",
+            "logo": "icons/AirUp.jpg",
             "seuil": 40,
             "idcible": 0,
             "ratio": 4,
@@ -607,7 +607,7 @@ module.exports = {
         },
         {
             "name": "Placement de produit Displate",
-            "logo": "icons/angel.png",
+            "logo": "icons/Displate.jpg",
             "seuil": 50,
             "idcible": 0,
             "ratio": 4,
@@ -616,7 +616,7 @@ module.exports = {
         },
         {
             "name": "Placement de produit World of Tanks",
-            "logo": "icons/WorldTanks.png",
+            "logo": "icons/WorldTanks.jpg",
             "seuil": 60,
             "idcible": 0,
             "ratio": 4,
@@ -627,7 +627,7 @@ module.exports = {
     "managers": [
         {
             "name": "Squeezie",
-            "logo": "icons/Squeezie.png",
+            "logo": "icons/Squeezie.jpg",
             "seuil": 10,
             "idcible": 1,
             "ratio": 0,
@@ -654,7 +654,7 @@ module.exports = {
         },
         {
             "name": "Lena Situation",
-            "logo": "icons/WangariMaathai.jpg",
+            "logo": "icons/Lena.jpg",
             "seuil": 15,
             "idcible": 4,
             "ratio": 0,

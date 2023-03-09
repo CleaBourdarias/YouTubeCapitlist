@@ -2,55 +2,57 @@ import { World, Palier } from "./world";
 import React, { useState } from 'react';
 
 
-type ManagerProps = {
+type UpgradeProps = {
     loadworld : World,
-    hireManager: (manager: Palier) => void,
-    handleManager: () => void,
-    showManagers:Boolean
+    buyUpgrade: (Upgrade: Palier) => void,
+    handleUpgrade: () => void,
+    showUpgrades:Boolean,
     money: number,
+
 
 }
 
-export default function ManagerComponent({loadworld, hireManager, handleManager, showManagers, money}:ManagerProps) {
-    //let showManagers = false; // déclaration d'une variable booléenne showManagers à true
+export default function UpgradeComponent({loadworld, buyUpgrade, handleUpgrade, showUpgrades, money}:UpgradeProps) {
+    //let showUpgrades = false; // déclaration d'une variable booléenne showUpgrades à true
 
     const [world,setWorld] = useState(loadworld)
 
     return (
         <div className="manager" >
             <div>
-                {showManagers &&
+                {showUpgrades &&
                     <div className="modal">
                         <div>
-                            <h1 className="title">Managers make you feel better !
-                            <button onClick={() => handleManager()}>X</button>
+                            <h1 className="title">Upgrades make you feel better !
+                            <button onClick={() => handleUpgrade()}>X</button>
                             </h1>
                         </div>
                         <div>
                             {
-                                world.managers.filter((manager: Palier) => !manager.unlocked).map(
-                                    (manager: Palier) => {
+                                world.upgrades.filter((upgrade: Palier) => !upgrade.unlocked).map(
+                                    (upgrade: Palier) => {
                         
                                         return (
-                                            <div key={manager.idcible} className="managergrid">
+                                            <div className="managergrid">
                                                 <div>
                                                     <div className="logo">
-                                                    <img className="round" src={"http://localhost:4000/" + manager.logo}/>
+                                                    <img className="round" src={"http://localhost:4000/" + upgrade.logo}/>
                                                     </div>
                                                 </div>
                                                 <div className="infosmanager">
-                                                    <div className="managername">{manager.name}</div>
+                                                    <div className="managername">{upgrade.name}</div>
                                                     <div className="managercible">
-                                                        {world.products[manager.idcible - 1].name}
+                                                        {world.products[upgrade.idcible - 1].name}
                                                     </div>
-                                                    <div className="managercost">{manager.seuil}</div>
+                                                    <div className="Upgradecost">{upgrade.seuil}</div>
                                                 </div>
-                                                <div onClick={() => hireManager(manager)}>
-                                                    <button disabled={money < manager.seuil}>Hire !</button>
+                                                <div onClick={() => buyUpgrade(upgrade)}>
+                                                    <button disabled={money < upgrade.seuil}>Hire !</button>
                                                 </div>
                                             </div>
                                         );
                                     }
+                                    
                                 )
                             }
                             
