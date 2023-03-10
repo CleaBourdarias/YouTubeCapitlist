@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
 import { useInterval } from "./MyInterval";
 import MyProgressbar, { Orientation } from "./MyProgressbar"
-import { World, Product } from "./world"
+import { World, Product, Palier } from "./world"
 import { gql, useApolloClient, useMutation } from '@apollo/client';
+import { transform } from "./utils";
+
 
 
 const LANCER_PRODUCTION = gql`
@@ -36,7 +38,6 @@ export default function ProductComponent({ loadworld, product, onProductionDone,
         }
         }
        )
-
 
     const lastupdate = useRef(Date.now()); //à mémoriser la date de dernière mise à jour du produit
     const [world,setWorld] = useState(loadworld)
@@ -96,14 +97,39 @@ export default function ProductComponent({ loadworld, product, onProductionDone,
     return (
         <div className="produit" >
             <div className="lesdeux">
+                <button className="boutonProduit" disabled={product.quantite === 0}>
                 <div className="lepremier">
-                    <img className="round" onClick={() => startFabrication()} src={"http://localhost:4000/" + product.logo}/>
+                    <img className="imageVideo" onClick={() => startFabrication()} src={"http://localhost:4000/" + product.logo}/>
                 </div>
                 <div className="lesecond">
                     <span> {product.name} </span>
-                    <span> {product.quantite} </span>
+                    <div>quantité de produit : <span> {product.quantite} </span></div>
+                    <div>coût du produit : <span> {transform(product.cout)} </span></div>
                     <button onClick={() => onProductBuy(product)} disabled={
                         (money<product.cout && qtmulti==="x1") || (money<(product.cout*10) && qtmulti==="x10") || (money<(product.cout*100) && qtmulti==="x100")}>Acheter Produit</button>
+                </div>
+                </button>
+                <div className="unlocks">
+                    {
+                        product.paliers.filter((palier: Palier) => palier.unlocked).map(
+                            (palier: Palier) => {
+                
+                                return (
+                                    <div key={palier.idcible} className="managergrid">
+                                        <div>
+                                            <div className="logo">
+                                            <img className="round" src={"http://localhost:4000/" + palier.logo}/>
+                                            </div>
+                                        </div>
+                                        <div className="infosmanager">
+                                            <div className="managername">{palier.name}</div>
+                                        </div>
+                                    </div>
+                                );
+                            }
+                        )
+                    }
+                    
                 </div>
             </div>
 

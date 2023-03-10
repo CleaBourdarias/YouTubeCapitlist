@@ -4,6 +4,11 @@
     border-radius: 50%
 }
 
+.imageVideo {
+    width: 100px;
+    height: 100px;
+}
+
 .square {
     width: 100px;
     height: 100px
@@ -29,5 +34,51 @@ bottom: -10px;
     top:10%; /* a 10% du haut */
     left:20%; /* a 20% de la gauche */
 }
-   
+
+button {
+    border: 20px;
+    background-color: red;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.boutonProduit{
+    background-color: rgb(192, 192, 192);
+}
+
+button:disabled {
+    background-color: #f0f0f0;
+    color: #888;
+    cursor: not-allowed;
+}
+
+
+button:hover:not([disabled]) {
+    background-color: darkred;
+}
+
+.managergrid {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-gap: 20px;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.managergrid:hover {
+    background-color: #eee;
+}
+
+.unlocks{
+    width: 100px;
+    height: 50px;
+}
    

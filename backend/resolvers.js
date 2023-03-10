@@ -21,6 +21,7 @@ function scalcScore(context) {
     context.world.products.forEach(p => {
 
         if (p.managerUnlocked) {
+            console.log(p.timeleft)
             if (p.timeleft > 0) {
                 tempsEcouleProduit = tempsEcoule - p.timeleft
                 if (tempsEcouleProduit < 0) {p.timeleft -= tempsEcoule}
@@ -43,7 +44,7 @@ function scalcScore(context) {
         }
 
         context.world.score += nbProduction * p.revenu * p.quantite * (1 + context.world.activeangels * context.world.angelbonus / 100)
-        context.world.bonus += nbProduction * p.revenu * p.quantite * (1 + context.world.activeangels * context.world.angelbonus / 100)
+        context.world.money += nbProduction * p.revenu * p.quantite * (1 + context.world.activeangels * context.world.angelbonus / 100)
     })
 
     context.world.lastupdate = String(Date.now())
@@ -80,7 +81,7 @@ module.exports = {
                 // on vérifie si il y a un unlock a débloquer
                 produit.paliers.forEach(u =>  {
                     if (u.idcible == produit.id && produit.quantite >= u.seuil) {
-                        u.undefined = true
+                        u.unlocked = true
                         if (u.typeratio == "vitesse") {
                             produit.vitesse = Math.round(produit.vitesse / u.ratio)
                         }
@@ -132,6 +133,7 @@ module.exports = {
         },
 
         lancerProductionProduit(parent, args, context) {
+            console.log("je lance la production")
             scalcScore(context)
             let produit = context.world.products.find(p => p.id === args.id)
 
@@ -140,6 +142,7 @@ module.exports = {
                     `Le produit avec l'id ${args.id} n'existe pas`)
             } else {
                 produit.timeleft = produit.vitesse
+                console.log(produit.timeleft)
 
                 saveWorld(context)
                 return produit
@@ -203,8 +206,8 @@ module.exports = {
             scalcScore(context)
 
             if ((Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 15))) - context.world.totalangels)<0){
-                context.world.activeangels += Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 15))) - context.world.totalangels
-                context.world.totalangels = Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 15)))
+                context.world.activeangels += Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 10))) - context.world.totalangels
+                context.world.totalangels = Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 10)))
             }
 
             let totalangels = context.world.totalangels
