@@ -85,32 +85,9 @@ const GET_WORLD = gql`
 function App() {
 
 
-  const [username, setUsername] = useState("toto");
+  const [username, setUsername] = useState(localStorage.getItem('username') || `Youtubeur${Math.floor(Math.random()*10000)}`);
 
   
-
-  const client = useApolloClient();
-
-  const { loading, error, data, refetch } = useQuery(GET_WORLD, {
-    context: { headers: { "x-user": username } }
-  });
-
-  useEffect(() => {
-    let lusername = localStorage.getItem("username");
-    if (lusername === undefined) {
-      lusername = "Youtubeur " + Math.floor(Math.random() * 10000);
-      localStorage.setItem("username", lusername);
-    }
-    if (lusername !== null) {
-      console.log(lusername)
-      setUsername(lusername);
-      client.resetStore()
-      refetch()
-    }
-  }, []);
-
-  
-
   const onUserNameChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
     localStorage.setItem("username", event.currentTarget.value);
     setUsername(event.currentTarget.value);
@@ -119,10 +96,11 @@ function App() {
     console.log(event.currentTarget.value);
   };
 
-  //const lastupdate = useRef(Date.now()); //à mémoriser la date de dernière mise à jour du produit
+  const client = useApolloClient();
 
-
-
+  const { loading, error, data, refetch } = useQuery(GET_WORLD, {
+    context: { headers: { "x-user": username } }
+  });
 
   let corps = undefined
   if (loading) corps = <div> Loading... </div>
