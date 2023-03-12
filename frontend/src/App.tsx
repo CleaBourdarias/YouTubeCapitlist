@@ -108,11 +108,15 @@ function App() {
   else corps = <Main loadworld={data.getWorld} username={username} />
 
   return (
+
+    
+    
     //App est le div racine - obligatoire en react
     <div>
-
-      <div> Votre ID :</div>
-      <input type="text" value={username} onChange={onUserNameChanged} />
+      <div className="id-container">
+          <img className="id" src="https://cdn-icons-png.flaticon.com/512/5584/5584515.png" />
+          <input type="text" value={username} onChange={onUserNameChanged} />
+      </div>
       {corps}
     </div>
   );

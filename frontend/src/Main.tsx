@@ -10,6 +10,7 @@ import { Palier } from './world';
 import { gql, useApolloClient, useMutation } from '@apollo/client';
 
 
+
 const ACHETER_PRODUIT = gql`
     mutation acheterQtProduit($id: Int!, $quantite: Int!) {
         acheterQtProduit(id: $id, quantite: $quantite) {
@@ -121,7 +122,7 @@ export default function Main({ loadworld, username }: MainProps) {
 
   function onProductionDone(p: Product): void {
     // calcul de la somme obtenue par la production du produit
-    let gain = p.revenu * p.quantite * (1 + ange * bonusAnge / 100) 
+    let gain = p.revenu * p.quantite * (1 + ange * bonusAnge / 100)
     // ajout de la somme à l’argent possédé
     let newScore = score + gain
     let newMoney = money + gain
@@ -195,6 +196,7 @@ export default function Main({ loadworld, username }: MainProps) {
   // affichage des fenetres
   function handleManager() {
     setShowManagers(!showManagers)
+    console.log("bouton Cliqué ")
   }
   function handleUpgrade() {
     setShowUpgrades(!showUpgrades)
@@ -204,6 +206,7 @@ export default function Main({ loadworld, username }: MainProps) {
   }
 
   function onProductBuy(p: Product) {
+    //console.log("jai cliqué ")
     if (money >= p.cout) {
       if (qtmulti === "x1") {
         p.quantite += 1
@@ -228,52 +231,52 @@ export default function Main({ loadworld, username }: MainProps) {
       }
     }
     // on vérifie si il y a un unlock a débloquer
-    p.paliers.forEach(u =>  {
+    p.paliers.forEach(u => {
       if (u.idcible == p.id && p.quantite >= u.seuil) {
-          u.unlocked = true
-          if (u.typeratio == "vitesse") {
-              p.vitesse = Math.round(p.vitesse / u.ratio)
-          }
-          if (u.typeratio == "gain") {
-              p.revenu = p.revenu * u.ratio
-          }
-          if (u.typeratio == "ange"){
-              world.angelbonus += u.ratio
-          }
+        u.unlocked = true
+        if (u.typeratio == "vitesse") {
+          p.vitesse = Math.round(p.vitesse / u.ratio)
+        }
+        if (u.typeratio == "gain") {
+          p.revenu = p.revenu * u.ratio
+        }
+        if (u.typeratio == "ange") {
+          world.angelbonus += u.ratio
+        }
       }
-  })
+    })
     // on vérifie si des allunlocks sont débloqués
-    world.allunlocks.forEach(a =>  {
+    world.allunlocks.forEach(a => {
       if (p.quantite >= a.seuil) {
-          let allunlocks = true
-          // on parcours les produits pour savoir s'il ont tous un quantité suffisante
-          world.products.forEach(p =>  {
-              if (p.quantite < a.seuil) {
-                  allunlocks = false
-              }
-          })
-          if (allunlocks) {
-              a.unlocked = true
-              if (a.typeratio == "ange"){
-                  world.angelbonus += a.ratio
-              }else{
-                  let produitCible = world.products.find(p => p.id === a.idcible)
-
-                  if (produitCible === undefined) {
-                      throw new Error(
-                          `Le produit avec l'id ${a.idcible} n'existe pas`)
-                  } else {
-                      if (a.typeratio == "vitesse") {
-                          produitCible.vitesse = Math.round(produitCible.vitesse / a.ratio)
-                      }
-                      if (a.typeratio == "gain") {
-                          produitCible.revenu = Math.round(produitCible.revenu * a.ratio)
-                      }
-                  }
-              }
+        let allunlocks = true
+        // on parcours les produits pour savoir s'il ont tous un quantité suffisante
+        world.products.forEach(p => {
+          if (p.quantite < a.seuil) {
+            allunlocks = false
           }
+        })
+        if (allunlocks) {
+          a.unlocked = true
+          if (a.typeratio == "ange") {
+            world.angelbonus += a.ratio
+          } else {
+            let produitCible = world.products.find(p => p.id === a.idcible)
+
+            if (produitCible === undefined) {
+              throw new Error(
+                `Le produit avec l'id ${a.idcible} n'existe pas`)
+            } else {
+              if (a.typeratio == "vitesse") {
+                produitCible.vitesse = Math.round(produitCible.vitesse / a.ratio)
+              }
+              if (a.typeratio == "gain") {
+                produitCible.revenu = Math.round(produitCible.revenu * a.ratio)
+              }
+            }
+          }
+        }
       }
-  })
+    })
   }
 
   function handleChange() {
@@ -285,36 +288,77 @@ export default function Main({ loadworld, username }: MainProps) {
 
   return (
     <div className="App">
+   
 
       <div className="header">
-        <div> <img className="square" src={"http://localhost:4000/" + world.logo} /> </div>
-        <span> {world.name} </span>
-        <div>
-          <div> YouTubeMoney </div>
-          <span dangerouslySetInnerHTML={{ __html: transform(money) }} />
-          <div>ange : </div>
-          <span dangerouslySetInnerHTML={{ __html: transform(ange) }} />
-          <div>score : </div>
-          <span dangerouslySetInnerHTML={{ __html: transform(score) }} />
-          <div>Bonus ange : </div>
-          <span dangerouslySetInnerHTML={{ __html: transform(bonusAnge) }} />
+        <div className="logo-container">
+          <img className="logo" src={"http://localhost:4000/" + world.logo} />
         </div>
-        <div> <div>multiplicateur : {qtmulti}</div>
-          <button onClick={() => handleChange()}>Clique pour changer la quantité</button>
+        <div className="search-container">
+          <span> {world.name} </span>
+          <button><img src="https://cdn-icons-png.flaticon.com/512/1062/1062199.png" alt="Logo monde" /></button>
         </div>
-
       </div>
 
-      <div className="main">
-        <div> liste des boutons de menu
-          <button onClick={() => handleManager()} >Engager un manager</button>
-          {showManagers && <ManagerComponent loadworld={world} hireManager={hireManager} handleManager={handleManager} showManagers={showManagers} money={money} />}
-          <button onClick={() => handleUpgrade()} >Afficher les CashUpgrades</button>
-          {showUpgrades && <UpgradeComponent loadworld={world} buyUpgrade={buyUpgrade} handleUpgrade={handleUpgrade} showUpgrades={showUpgrades} money={money} />}
-          <button onClick={() => handleAnge()} >Acheter les AngeUpgrades</button>
-          {showAnges && <AngeComponent loadworld={world} buyAnge={buyAnge} handleAnge={handleAnge} showAnges={showAnges} ange={ange} />}
-          <button onClick={() => resetWorld()} >Reset World !</button>
+      <div className="header">
+        <div className="YouTubeMoney-container">
+          {/*<div> YouTubeMoney </div>*/}
+          <img className="YouTubeMoney" src="https://cdn-icons-png.flaticon.com/512/3037/3037150.png" />
+          <span className="style" dangerouslySetInnerHTML={{ __html: transform(money) }} />
+        </div>
+        <div className="ange-container">
+          {/*<div> ange </div>*/}
+          <img className="ange" src="https://cdn-icons-png.flaticon.com/512/1480/1480530.png" />
+          <span className="style" dangerouslySetInnerHTML={{ __html: transform(ange) }} />
+        </div>
+        <div className="score-container">
+          {/*<div> score </div>*/}
+          <img className="score" src="https://cdn-icons-png.flaticon.com/512/9091/9091565.png" />
+          <span className="style" dangerouslySetInnerHTML={{ __html: transform(score) }} />
+        </div>
+        <div className="BonusAnge-container">
+          {/*<div> Bonus ange  </div>*/}
+          <img className="BonusAnge" src="https://cdn-icons-png.flaticon.com/512/5110/5110795.png" />
+          <span className="style" dangerouslySetInnerHTML={{ __html: transform(bonusAnge) }} />
+        </div>
+      </div>
 
+      <div className="header">
+        <span className="style-Multiplicateur">Multiplicateur</span>
+        <button className="boutonMenu-Multiplicateur" onClick={() => handleChange()}>{qtmulti}</button>
+      </div>
+
+      <br></br>
+
+      <div className="main">
+
+        <div>
+          {/*<button className="boutonMenu" onClick={() => handleManager()} >Engager un manager</button>*/}
+          <button className="boutonMenu" onClick={() => handleManager()}>
+            <img src="https://cdn-icons-png.flaticon.com/512/9686/9686199.png" alt="Engager un manager" />
+            <span>Engager un manager</span>
+          </button>
+          {showManagers && <ManagerComponent loadworld={world} hireManager={hireManager} handleManager={handleManager} showManagers={showManagers} money={money} />}
+
+          {/*<button className="boutonMenu" onClick={() => handleUpgrade()} >Afficher les CashUpgrades</button>*/}
+          <button className="boutonMenu" onClick={() => handleUpgrade()}>
+            <img src="https://cdn-icons-png.flaticon.com/512/1548/1548175.png" alt="Afficher les CashUpgrades" />
+            <span>Afficher les CashUpgrades</span>
+          </button>
+          {showUpgrades && <UpgradeComponent loadworld={world} buyUpgrade={buyUpgrade} handleUpgrade={handleUpgrade} showUpgrades={showUpgrades} money={money} />}
+
+
+          {/*<button className="boutonMenu" onClick={() => handleAnge()} >Acheter les AngeUpgrades</button>*/}
+          <button className="boutonMenu" onClick={() => handleAnge()}>
+            <img src="https://cdn-icons-png.flaticon.com/512/1497/1497829.png" alt="Acheter les AngeUpgrades" />
+            <span>Acheter les AngeUpgrades</span>
+          </button>
+          {showAnges && <AngeComponent loadworld={world} buyAnge={buyAnge} handleAnge={handleAnge} showAnges={showAnges} ange={ange} />}
+
+          {/*<button className="boutonMenu" id="reset-world" onClick={() => resetWorld()} >Reset World !</button>*/}
+          <button className="boutonMenu" id="reset-world" onClick={() => resetWorld()}>
+            <img src="https://cdn-icons-png.flaticon.com/512/5486/5486166.png" alt="Reset World !" />
+          </button>
 
           <div className="unlocks">
             {
@@ -339,18 +383,27 @@ export default function Main({ loadworld, username }: MainProps) {
 
         </div>
 
+
+
         <div className="product">
-
-
-          <div className="product">
+            <div className="V1">
             <ProductComponent loadworld={loadworld} onProductionDone={onProductionDone} onProductBuy={onProductBuy} qtmulti={qtmulti} product={world.products[0]} money={money} user={username} />
+            </div>
+            <div className="V2">
             <ProductComponent loadworld={loadworld} onProductionDone={onProductionDone} onProductBuy={onProductBuy} qtmulti={qtmulti} product={world.products[1]} money={money} user={username} />
+            </div>
+            <div className="V3">
             <ProductComponent loadworld={loadworld} onProductionDone={onProductionDone} onProductBuy={onProductBuy} qtmulti={qtmulti} product={world.products[2]} money={money} user={username} />
+            </div>
+            <div className="V4">
             <ProductComponent loadworld={loadworld} onProductionDone={onProductionDone} onProductBuy={onProductBuy} qtmulti={qtmulti} product={world.products[3]} money={money} user={username} />
+            </div>
+            <div className="V5">
             <ProductComponent loadworld={loadworld} onProductionDone={onProductionDone} onProductBuy={onProductBuy} qtmulti={qtmulti} product={world.products[4]} money={money} user={username} />
+            </div>
+            <div className="V6">
             <ProductComponent loadworld={loadworld} onProductionDone={onProductionDone} onProductBuy={onProductBuy} qtmulti={qtmulti} product={world.products[5]} money={money} user={username} />
-          </div>
-
+            </div>
         </div>
       </div>
     </div>
