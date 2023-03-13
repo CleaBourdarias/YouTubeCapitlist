@@ -4,62 +4,452 @@
     border-radius: 50%
 }
 
-.imageVideo {
-    width: 100px;
-    height: 100px;
+.modal {
+    position: fixed;
+    /* reste en place */
+    z-index: 2;
+    /* au dessus du reste */
+    width: 800px;
+    /* largeur */
+    height: 500px;
+    /* hauteur */
+    overflow: auto;
+    /* barre de scroll si besoin */
+    background-color: white;
+    /* opaque */
+    border: solid;
+    top: 10%;
+    /* a 10% du haut */
+    left: 20%;
+    /* a 20% de la gauche */
 }
 
-.square {
-    width: 100px;
-    height: 100px
+.boutonMenu:hover {
+    background-color: #e6e6e6;
+}
+
+.boutonMenu:focus {
+    outline: none;
+}
+
+button#reset-world {
+    margin-top: -310px;
+    color: #8B0000;
+    background-color: #ffded7;
+    width: 50px;
+    margin-left: 1185px;
+
+}
+
+button#reset-world:hover {
+    background-color: #ffbdb0;
+}
+
+.unlocks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.managergrid {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 200px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.round {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+
+
+
+.boutonMenu {
+    display: flex;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #606060;
+    align-items: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: none;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    margin-right: 20px;
+}
+
+.boutonMenu:hover {
+    background-color: #e1dede;
+}
+
+.boutonMenu img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+
+
+
+
+/*LOGO monde*/
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    margin-top: -85px;
+}
+
+.logo-container img {
+    height: 100%;
+    margin-right: 8px;
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.world-name {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-left: 16px;
+    border: 1px solid #ddd;
+    border-radius: 24px;
+    padding: 8px 16px;
+    width: 300px;
+    margin-top: -85px;
+}
+
+.search-container input {
+    flex: 1;
+    border: none;
+    outline: none;
+}
+
+.search-container button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+.search-container button img {
+    height: 24px;
+    margin-left: 170px;
+}
+
+
+/*ID*/
+.id-container {
+    display: flex;
+    align-items: center;
+    margin-left: 1030px;
+    margin-top: 30px;
+}
+
+.id-container img {
+    height: 100%;
+    margin-right: 8px;
+}
+
+.id {
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+
+/*YouTubeMoney*/
+.YouTubeMoney-container {
+    display: flex;
+    align-items: center;
+    margin-left: 540px;
+    margin-top: -155px;
+}
+
+.YouTubeMoney-container img {
+    height: 100%;
+    margin-right: 8px;
+}
+
+.YouTubeMoney {
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    margin-right: 10px;
+
+}
+
+/*ange*/
+.ange-container {
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+    margin-top: -160px;
+}
+
+.ange-container img {
+    height: 100%;
+    margin-right: 8px;
+}
+
+.ange {
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    margin-right: 10px;
+
+}
+
+/*score*/
+.score-container {
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+    margin-top: -160px;
+}
+
+.score-container img {
+    height: 100%;
+    margin-right: 8px;
+}
+
+.score {
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    margin-right: 10px;
+
+}
+
+/*BonusAnge*/
+.BonusAnge-container {
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+    margin-top: -160px;
+}
+
+.BonusAnge-container img {
+    height: 100%;
+    margin-right: 8px;
+}
+
+.BonusAnge {
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    margin-right: 10px;
+
+}
+
+.style {
+    font-family: "Times New Roman", Times, serif;
+}
+
+/*Multiplicateur*/
+
+.boutonMenu-Multiplicateur {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px;
+    background-color: #c5deeee7;
+    border: none;
+    color: #215eb9;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    margin-left: 10px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.boutonMenu-Multiplicateur:hover {
+    background-color: #97c8e7e7;
+}
+
+.boutonMenu-Multiplicateur:focus {
+    outline: none;
+}
+
+.style-Multiplicateur {
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #215eb9;
+    margin-left: 25px;
+    margin-top: 30px;
+}
+
+
+/*Classe Product*/
+
+.product {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    padding: 20px;
+    width: 950px;
+    margin-top: -70px;
+}
+
+.imageVideo {
+    max-height: 150px;
+    width: 290px;
+    border-radius: 10px;
+    
+}
+
+.boutonProduit {
+    background-color: transparent;
+    border: none;
+}
+
+.lepremier{
+    margin-left: 0px;
+}
+
+.lesecond {
+    position: absolute;
+    background-color: white;
+    margin-left: 5px;
+    font-family:  'Roboto', Times, serif;
+    color: #333;
+    width: 290px;
+    
+}
+.lesecond input {
+    flex: 1;
+    border: none;
+    outline: none;
+    
 }
 
 .lesdeux {
     position: relative;
 }
-.lesecond {
-position: absolute;
-bottom: -10px;
-}
-   
-
-.modal {
-    position: fixed; /* reste en place */
-    z-index: 2; /* au dessus du reste */
-    width: 800px; /* largeur */
-    height: 500px; /* hauteur */
-    overflow: auto; /* barre de scroll si besoin */
-    background-color: white; /* opaque */
-    border: solid;
-    top:10%; /* a 10% du haut */
-    left:20%; /* a 20% de la gauche */
-}
-
-button {
-    border: 20px;
-    background-color: red;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
+.titre-video{
     font-size: 16px;
+    font-weight: bold;
+}
+.style-infoVideo{
+    text-align: left;
+    font-family: "Times New Roman", Times, serif;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+
+
+.buy-product {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px;
+    background-color: #ff1717e7;
+    border: 1px;
+    border-radius: 10px;
+    border-color: #7f0000e7;
+    color: #ffffff;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease-in-out;
+   margin-left: 220px;
+   margin-top: -30px;
+   margin-bottom: 10px;
+   height: 30px;
+   width: 50px;
+}
+.barstyle{
+    margin-left: 0px;
+    height: 25px;
+    width: 290px;
+    border-radius: 10px;
+    margin-top: -5px;
+    margin-bottom: 20px ;
+}
+.V1{
+    width: 300px;
+    height: 250px;
+    margin-left: 9px;
+    margin-top: 0px;
+   
+}
+.V2{
+    width: 300px;
+    height: 250px;
+    margin-left: -615px;
 }
 
-.boutonProduit{
-    background-color: rgb(192, 192, 192);
+.V3{
+    width: 300px;
+    height: 250px;
+    margin-top: -250px;
+    margin-left: 640px;
 }
 
-button:disabled {
-    background-color: #f0f0f0;
-    color: #888;
-    cursor: not-allowed;
+.V4{
+    width: 300px;
+    height: 250px;
+    margin-left: -930px;
+    margin-top: 20px;
+}
+
+.V5{
+    width: 300px;
+    height: 250px;
+    margin-left: 325px;
+    margin-top: -250px;
+}
+.V6{
+    width: 300px;
+    height: 250px;
+    margin-left: -300px;
+    margin-top: -250px;
+    
 }
 
 
-button:hover:not([disabled]) {
-    background-color: darkred;
-}
+
 
 .managergrid {
     display: grid;
@@ -71,14 +461,90 @@ button:hover:not([disabled]) {
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
+    position: relative;
+    z-index: 9999;
+    height: auto;
+    width: auto;
 }
 
 .managergrid:hover {
     background-color: #eee;
 }
 
-.unlocks{
+.unlocks {
     width: 100px;
     height: 50px;
 }
-   
+
+.infosmanager {
+    display: flex;
+    flex-direction: column;
+}
+
+.managername {
+    font-size: 20px;
+    font-weight: bold;
+    color: #222;
+    font-family: "Times New Roman", Times, serif;
+}
+
+
+/*Fenetre Manger*/
+.img-cloche{
+    height: 30px;
+    width: 30px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.title{
+    font-size: 25px;
+    font-family:  'Roboto', Times, serif;
+    color: #ff0000;
+}
+
+.boutonCroix{
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+    border: none;
+    margin-left: 30px;
+}
+
+.boutonHire{
+    height: 60px;
+    width: 60px;
+    background-color: transparent;
+    border: none;
+    margin-left: -20px;
+}
+
+
+
+/*Fenetre Cashupgrade*/
+.img-partenaire{
+    height: 30px;
+    width: 30px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+
+button:disabled {
+    background-color: #f0f0f0;
+    color: #888;
+    cursor: not-allowed;
+}
+
+/*Fenetre AngesUpgradres*/
+.img-angeupgrade{
+    height: 40px;
+    width: 40px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+
+
+
+
+

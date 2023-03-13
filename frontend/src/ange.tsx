@@ -22,8 +22,14 @@ export default function AngeComponent({loadworld, buyAnge, handleAnge, showAnges
                 {showAnges &&
                     <div className="modal">
                         <div>
-                            <h1 className="title">Anges make you feel better !
-                            <button onClick={() => handleAnge()}>X</button>
+                            <h1 className="title">Les placements de produits vont augmenter tes revenus 
+                            <img className="img-angeupgrade" src="https://cdn-icons-png.flaticon.com/512/4626/4626780.png"/>
+                            <button className="boutonCroix" onClick={() => handleAnge()}>
+                            <img className="boutonCroix" src="https://cdn-icons-png.flaticon.com/512/4226/4226718.png" alt="X" />
+                            </button>
+
+
+                            {/*<button onClick={() => handleAnge()}>X</button>*/}
                             </h1>
                         </div>
                         <div>
@@ -43,7 +49,12 @@ export default function AngeComponent({loadworld, buyAnge, handleAnge, showAnges
                                                     <div className="managercost">{angel.seuil}</div>
                                                 </div>
                                                 <div onClick={() => buyAnge(angel)}>
-                                                    <button disabled={ange < angel.seuil}>Buy !</button>
+
+                                                    <button className="boutonHire"  disabled={ange < angel.seuil}>
+                                                        <img className="boutonHire" src="https://cdn-icons-png.flaticon.com/512/478/478045.png" alt="Hire" style={{ pointerEvents: ange < angel.seuil ? 'none' : 'auto' }}  />
+                                                    </button>
+
+                                                    {/*<button disabled={ange < angel.seuil}>Buy !</button>*/}
                                                 </div>
                                             </div>
                                         );
