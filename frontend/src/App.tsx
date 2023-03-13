@@ -95,6 +95,11 @@ function App() {
     client.resetStore()
     console.log(event.currentTarget.value);
   };
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      window.location.reload();
+    }
+  };
 
   const client = useApolloClient();
 
@@ -115,7 +120,7 @@ function App() {
     <div>
       <div className="id-container">
           <img className="id" src="https://cdn-icons-png.flaticon.com/512/5584/5584515.png" />
-          <input type="text" value={username} onChange={onUserNameChanged} />
+          <input type="text" value={username} onChange={onUserNameChanged} onKeyPress={handleKeyPress}/>
       </div>
       {corps}
     </div>

@@ -97,30 +97,24 @@ export default function ProductComponent({ loadworld, product, onProductionDone,
     return (
         <div className="produit" >
             <div className="lesdeux">
-
-           
+        
                 <button className="boutonProduit" disabled={product.quantite === 0}>
-                
-             
                 
                 <div className="lepremier">
                     <img className="imageVideo" onClick={() => startFabrication()} src={"http://localhost:4000/" + product.logo}/>
                 </div>
                 
-               
+                </button>
+
                 <div className="lesecond">
                     <span className="titre-video"> {product.name} </span>
                     <div className="style-infoVideo">Quantité de produit : <span> {product.quantite} </span></div>
                     <div className="style-infoVideo">Coût du produit : <span> {transform(product.cout)} </span></div>
 
                     <button className="buy-product" onClick={() => onProductBuy(product)} disabled={
-                        (money<product.cout && qtmulti==="x1") || (money<(product.cout*10) && qtmulti==="x10") || (money<(product.cout*100) && qtmulti==="x100")}>BUY</button>
+                        (money<product.cout && qtmulti==="x1") || (money<(product.cout*10) && qtmulti==="x10") || (money<(product.cout*100) && qtmulti==="x100") || (money<product.cout && qtmulti==="Max")}>BUY</button>
                 </div>
-               
-                
-                </button>
-              
-                
+
                 <div className="unlocks">
                     {
                         product.paliers.filter((palier: Palier) => palier.unlocked).map(
@@ -144,10 +138,6 @@ export default function ProductComponent({ loadworld, product, onProductionDone,
                     
                 </div>
             </div>
-
-
-
-
 
             <MyProgressbar className="barstyle" 
                 vitesse={product.vitesse}

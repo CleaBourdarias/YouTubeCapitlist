@@ -8,6 +8,7 @@ import AngeComponent from "./ange"
 import UpgradeComponent from "./upgrade"
 import { Palier } from './world';
 import { gql, useApolloClient, useMutation } from '@apollo/client';
+import Snackbar from "@mui/material/Snackbar";
 
 
 
@@ -118,6 +119,8 @@ export default function Main({ loadworld, username }: MainProps) {
   const [showAnges, setShowAnges] = useState(false);
   const [score, setScore] = useState(world.score);
   const [bonusAnge, setBonusAnge] = useState(world.angelbonus);
+  const [open, setOpen] = useState(false);
+  const [snackBarManager, setSnackBarManager] = useState(false);
 
 
   function onProductionDone(p: Product): void {
@@ -141,8 +144,10 @@ export default function Main({ loadworld, username }: MainProps) {
       let newMoney = money - manager.seuil
       setMoney(newMoney)
     }
+
     engagerManager({ variables: { name: manager.name } });
   }
+
 
   function buyUpgrade(upgrade: Palier): void {
     upgrade.unlocked = true;
@@ -156,10 +161,10 @@ export default function Main({ loadworld, username }: MainProps) {
       throw new Error(
         `Le produit avec l'id ${upgrade.idcible} n'existe pas`)
     } else {
-      if (upgrade.typeratio == "vitesse") {
+      if (upgrade.typeratio === "vitesse") {
         produit.vitesse = Math.round(produit.vitesse / upgrade.ratio)
       }
-      if (upgrade.typeratio == "gain") {
+      if (upgrade.typeratio === "gain") {
         produit.revenu = produit.revenu * upgrade.ratio
       }
     }
@@ -171,16 +176,16 @@ export default function Main({ loadworld, username }: MainProps) {
     let newAnge = ange - angel.seuil
     setAnge(newAnge)
 
-    if (angel.typeratio == "ange") {
+    if (angel.typeratio === "ange") {
       let newAngelBonus = bonusAnge + angel.ratio
       setBonusAnge(newAngelBonus)
     } else {
       world.products.forEach(produit => {
 
-        if (angel.typeratio == "vitesse") {
+        if (angel.typeratio === "vitesse") {
           produit.vitesse = Math.round(produit.vitesse / angel.ratio)
         }
-        if (angel.typeratio == "gain") {
+        if (angel.typeratio === "gain") {
           produit.revenu = produit.revenu * angel.ratio
         }
       })
@@ -196,7 +201,6 @@ export default function Main({ loadworld, username }: MainProps) {
   // affichage des fenetres
   function handleManager() {
     setShowManagers(!showManagers)
-    console.log("bouton Cliqué ")
   }
   function handleUpgrade() {
     setShowUpgrades(!showUpgrades)
@@ -229,18 +233,29 @@ export default function Main({ loadworld, username }: MainProps) {
         setMoney(moneyWorld)
         acheterProduit({ variables: { id: p.id, quantite: 100 } });
       }
+      if (qtmulti === "Max"){
+        // on calcule le maximum de produit qu'on peut acheter
+        let maxCanBuy = Math.floor((Math.log10(((money * (p.croissance - 1))/p.cout) + 1))/Math.log10(p.croissance))
+
+        p.quantite += maxCanBuy
+        let moneyWorld = money - ((Math.pow(p.croissance, maxCanBuy) - 1) / (p.croissance - 1) * p.cout)
+        p.cout = p.cout * Math.pow(p.croissance, maxCanBuy)
+        setMoney(moneyWorld)
+        acheterProduit({ variables: { id: p.id, quantite: maxCanBuy } });
+      }
     }
     // on vérifie si il y a un unlock a débloquer
     p.paliers.forEach(u => {
-      if (u.idcible == p.id && p.quantite >= u.seuil) {
+      if (u.idcible === p.id && p.quantite >= u.seuil) {
         u.unlocked = true
-        if (u.typeratio == "vitesse") {
+        
+        if (u.typeratio === "vitesse") {
           p.vitesse = Math.round(p.vitesse / u.ratio)
         }
-        if (u.typeratio == "gain") {
+        if (u.typeratio === "gain") {
           p.revenu = p.revenu * u.ratio
         }
-        if (u.typeratio == "ange") {
+        if (u.typeratio === "ange") {
           world.angelbonus += u.ratio
         }
       }
@@ -257,7 +272,7 @@ export default function Main({ loadworld, username }: MainProps) {
         })
         if (allunlocks) {
           a.unlocked = true
-          if (a.typeratio == "ange") {
+          if (a.typeratio === "ange") {
             world.angelbonus += a.ratio
           } else {
             let produitCible = world.products.find(p => p.id === a.idcible)
@@ -266,10 +281,10 @@ export default function Main({ loadworld, username }: MainProps) {
               throw new Error(
                 `Le produit avec l'id ${a.idcible} n'existe pas`)
             } else {
-              if (a.typeratio == "vitesse") {
+              if (a.typeratio === "vitesse") {
                 produitCible.vitesse = Math.round(produitCible.vitesse / a.ratio)
               }
-              if (a.typeratio == "gain") {
+              if (a.typeratio === "gain") {
                 produitCible.revenu = Math.round(produitCible.revenu * a.ratio)
               }
             }
@@ -282,9 +297,10 @@ export default function Main({ loadworld, username }: MainProps) {
   function handleChange() {
     if (qtmulti === "x1") { setQtmulti("x10"); }
     if (qtmulti === "x10") { setQtmulti("x100"); }
-    if (qtmulti === "x100") { setQtmulti("x1"); }
+    if (qtmulti === "x100") { setQtmulti("Max"); }
     if (qtmulti === "Max") { setQtmulti("x1"); }
   }
+
 
   return (
     <div className="App">
@@ -338,7 +354,7 @@ export default function Main({ loadworld, username }: MainProps) {
             <img src="https://cdn-icons-png.flaticon.com/512/9686/9686199.png" alt="Engager un manager" />
             <span>Engager un manager</span>
           </button>
-          {showManagers && <ManagerComponent loadworld={world} hireManager={hireManager} handleManager={handleManager} showManagers={showManagers} money={money} />}
+          {showManagers && <ManagerComponent loadworld={world} hireManager={hireManager} handleManager={handleManager} showManagers={showManagers} money={money}/>}
 
           {/*<button className="boutonMenu" onClick={() => handleUpgrade()} >Afficher les CashUpgrades</button>*/}
           <button className="boutonMenu" onClick={() => handleUpgrade()}>
@@ -360,7 +376,7 @@ export default function Main({ loadworld, username }: MainProps) {
             <img src="https://cdn-icons-png.flaticon.com/512/5486/5486166.png" alt="Reset World !" />
           </button>
 
-          <div className="unlocks">
+          {/*<div className="unlocks">
             {
               world.allunlocks.filter((allunlock: Palier) => allunlock.unlocked).map(
                 (allunlock: Palier) => {
@@ -379,7 +395,16 @@ export default function Main({ loadworld, username }: MainProps) {
                 }
               )
             }
-          </div>
+          </div>*/}
+          <Snackbar
+            onClose={(event, reason) => {
+              // `reason === 'escapeKeyDown'` if `Escape` was pressed
+              setOpen(false);
+              // call `event.preventDefault` to only close one Snackbar at a time.
+            }}
+          />
+
+          
 
         </div>
 

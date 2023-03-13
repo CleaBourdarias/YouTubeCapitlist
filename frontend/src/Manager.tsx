@@ -1,20 +1,29 @@
-import { World, Palier } from "./world";
+import { World, Palier, Product } from "./world";
 import React, { useState } from 'react';
+import {Snackbar} from "@mui/material";
 
 
 type ManagerProps = {
     loadworld : World,
     hireManager: (manager: Palier) => void,
     handleManager: () => void,
-    showManagers:Boolean
+    showManagers:Boolean,
     money: number,
-
 }
 
 export default function ManagerComponent({loadworld, hireManager, handleManager, showManagers, money}:ManagerProps) {
     //let showManagers = false; // déclaration d'une variable booléenne showManagers à true
 
     const [world,setWorld] = useState(loadworld)
+    const [snackBarManager, setSnackBarManager] = useState(false);
+
+    function clickManager(manager: Palier){
+        hireManager(manager)
+        setSnackBarManager(true)
+
+        console.log(snackBarManager)
+    }
+
 
     return (
         <div className="manager" >
@@ -49,13 +58,11 @@ export default function ManagerComponent({loadworld, hireManager, handleManager,
                                                     </div>
                                                     <div className="managercost">{manager.seuil}</div>
                                                 </div>
-                                                <div onClick={() => hireManager(manager)}>
+                                                <div onClick={() => clickManager(manager)}>
                                                 
                                                 <button className="boutonHire" disabled={money < manager.seuil}>
                                                 <img className="boutonHire" src="https://cdn-icons-png.flaticon.com/512/4470/4470940.png" alt="Hire" style={{ pointerEvents: money < manager.seuil ? 'none' : 'auto' }}/>
                                                 </button>
-
-
                                                     {/*<button disabled={money < manager.seuil}>Hire !</button>*/}
                                                 </div>
                                             </div>
@@ -64,6 +71,13 @@ export default function ManagerComponent({loadworld, hireManager, handleManager,
                                 )
                             }
                             
+                        </div>
+                        <div>
+                            <Snackbar 
+                                open={snackBarManager}
+                                autoHideDuration={5000}
+                                message="Nouveau manager embauché !"
+                            />
                         </div>
                     </div>
                 }

@@ -15,27 +15,21 @@ function saveWorld(context) {
 function scalcScore(context) {
 
     let tempsEcoule = Date.now() - parseInt(context.world.lastupdate)
-    let nbProduction = 0
     console.log("Je calcule le score")
 
     context.world.products.forEach(p => {
+        let nbProduction = 0
 
         if (p.managerUnlocked) {
-            console.log(p.timeleft)
-            if (p.timeleft > 0) {
-                tempsEcouleProduit = tempsEcoule - p.timeleft
-                if (tempsEcouleProduit < 0) {p.timeleft -= tempsEcoule}
-                else {
-                    nbProduction = (tempsEcouleProduit / p.vitesse) + 1
-                    p.timeleft = tempsEcouleProduit % p.vitesse
-                }         
-            } else {
-                p.timeleft -= tempsEcoule
-                if (p.timeleft <= 0) {
-                    nbProduction = 1
-                    p.timeleft = 0
-                }
-            }
+
+            tempsEcouleProduit = tempsEcoule - p.timeleft
+           
+            if (tempsEcouleProduit < 0) {p.timeleft -= tempsEcouleProduit}
+            else {
+                nbProduction = (tempsEcouleProduit / p.vitesse) + 1
+                p.timeleft = tempsEcouleProduit % p.vitesse
+            }         
+            
         }else{
             if(p.timeleft != 0 && p.timeleft < tempsEcoule){
                 nbProduction=1

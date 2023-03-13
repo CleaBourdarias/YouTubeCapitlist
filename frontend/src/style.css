@@ -4,21 +4,6 @@
     border-radius: 50%
 }
 
-/*.imageVideo {
-    width: 100px;
-    height: 100px;
-}
-
-.square {
-    width: 100px;
-    height: 100px
-}*/
-
-
-
-
-
-
 .modal {
     position: fixed;
     /* reste en place */
@@ -38,59 +23,6 @@
     left: 20%;
     /* a 20% de la gauche */
 }
-
-/*
-button {
-    border: 20px;
-    background-color: red;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button {
-    background-color: rgb(192, 192, 192);
-}
-*/
-
-/*button:disabled {
-    background-color: #f0f0f0;
-    color: #888;
-    cursor: not-allowed;
-}*/
-
-
-/*.boutonMenu:hover:not([disabled]) {
-    background-color: #C0C0C0;
-}*/
-
-
-
-
-
-/*def*/
-/*.boutonMenu {
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #606060;
-    background-color: #f9f9f9;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-right: 20px;
-    cursor: pointer;
-
-}*/
-
-/*.boutonProduit {
-    background-color: rgb(192, 192, 192);
-}*/
 
 .boutonMenu:hover {
     background-color: #e6e6e6;
@@ -418,7 +350,7 @@ button#reset-world:hover {
 .lesecond {
     position: absolute;
     background-color: white;
-    margin-left: 0px;
+    margin-left: 5px;
     font-family:  'Roboto', Times, serif;
     color: #333;
     width: 290px;
