@@ -199,7 +199,8 @@ module.exports = {
         resetWorld(parent, args, context) {
             scalcScore(context)
 
-            if ((Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 15))) - context.world.totalangels)<0){
+            if ((Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 10))) - context.world.totalangels)>0){
+                console.log("cocu")
                 context.world.activeangels += Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 10))) - context.world.totalangels
                 context.world.totalangels = Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 10)))
             }

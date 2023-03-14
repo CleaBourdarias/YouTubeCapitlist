@@ -28,8 +28,6 @@ type ProductProps = {
 
  
 export default function ProductComponent({ loadworld, product, onProductionDone, onProductBuy, money, qtmulti, user}: ProductProps) {
-    //fait des hooks de lastupdate et timeleft
-
 
     const [lancerProduction] = useMutation(LANCER_PRODUCTION,
         { context: { headers: { "x-user": user }},
@@ -114,29 +112,6 @@ export default function ProductComponent({ loadworld, product, onProductionDone,
                     <button className="buy-product" onClick={() => onProductBuy(product)} disabled={
                         (money<product.cout && qtmulti==="x1") || (money<(product.cout*10) && qtmulti==="x10") || (money<(product.cout*100) && qtmulti==="x100") || (money<product.cout && qtmulti==="Max")}>BUY</button>
                 </div>
-
-                <div className="unlocks">
-                    {
-                        product.paliers.filter((palier: Palier) => palier.unlocked).map(
-                            (palier: Palier) => {
-                
-                                return (
-                                    <div key={palier.idcible} className="managergrid">
-                                        <div>
-                                            <div className="logo">
-                                            <img className="round" src={"http://localhost:4000/" + palier.logo}/>
-                                            </div>
-                                        </div>
-                                        <div className="infosmanager">
-                                            <div className="managername">{palier.name}</div>
-                                        </div>
-                                    </div>
-                                );
-                            }
-                        )
-                    }
-                    
-                </div>
             </div>
 
             <MyProgressbar className="barstyle" 
@@ -145,7 +120,6 @@ export default function ProductComponent({ loadworld, product, onProductionDone,
                 run={timeleft>0 || product.managerUnlocked} frontcolor="#215eb9" backcolor="#ffffff"
                 auto={product.managerUnlocked}
                 orientation={Orientation.horizontal} />
-
 
         </div>
 

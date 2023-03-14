@@ -3,6 +3,15 @@
     height: 100px;
     border-radius: 50%
 }
+.petitRound {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%
+}
+
+.SnackBar{
+    z-index:1000;
+}
 
 .modal {
     position: fixed;
@@ -401,7 +410,7 @@ button#reset-world:hover {
 }
 .barstyle{
     margin-left: 0px;
-    height: 25px;
+    height: 45px;
     width: 290px;
     border-radius: 10px;
     margin-top: -5px;

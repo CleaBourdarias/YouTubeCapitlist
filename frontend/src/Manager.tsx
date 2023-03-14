@@ -1,6 +1,6 @@
 import { World, Palier, Product } from "./world";
 import React, { useState } from 'react';
-import {Snackbar} from "@mui/material";
+import {Snackbar, Alert} from "@mui/material";
 
 
 type ManagerProps = {
@@ -16,12 +16,14 @@ export default function ManagerComponent({loadworld, hireManager, handleManager,
 
     const [world,setWorld] = useState(loadworld)
     const [snackBarManager, setSnackBarManager] = useState(false);
+    const [actualManager, setActualManager] = useState(world.managers[0]);
+
 
     function clickManager(manager: Palier){
         hireManager(manager)
         setSnackBarManager(true)
+        setActualManager(manager)
 
-        console.log(snackBarManager)
     }
 
 
@@ -72,12 +74,13 @@ export default function ManagerComponent({loadworld, hireManager, handleManager,
                             }
                             
                         </div>
-                        <div>
-                            <Snackbar 
-                                open={snackBarManager}
-                                autoHideDuration={5000}
-                                message="Nouveau manager embauché !"
-                            />
+                        <div className="SnackBar">
+                            <Snackbar open={snackBarManager} autoHideDuration={3000} onClose={() => setSnackBarManager(false)}>
+                                <Alert severity="success" sx={{ width: '100%' }}>
+                                    <img className="petitRound" src={"http://localhost:4000/" + actualManager.logo}/>
+                                    {actualManager.name} travail désormais avec vous !
+                                </Alert>
+                          </Snackbar>
                         </div>
                     </div>
                 }

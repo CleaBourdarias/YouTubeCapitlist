@@ -8,10 +8,11 @@ import AngeComponent from "./ange"
 import UpgradeComponent from "./upgrade"
 import { Palier } from './world';
 import { gql, useApolloClient, useMutation } from '@apollo/client';
-import Snackbar from "@mui/material/Snackbar";
+import {Snackbar, Alert, Button} from "@mui/material";
 
 
-
+//liaison avec le backend
+//appel des mutations du backend
 const ACHETER_PRODUIT = gql`
     mutation acheterQtProduit($id: Int!, $quantite: Int!) {
         acheterQtProduit(id: $id, quantite: $quantite) {
@@ -109,20 +110,23 @@ export default function Main({ loadworld, username }: MainProps) {
     }
   )
 
-
+  //initialisation des hooks
   const [money, setMoney] = useState(world.money);
   const [ange, setAnge] = useState(world.activeangels);
-  const [totalAnge, setTotalAnge] = useState(world.totalangels);
   const [qtmulti, setQtmulti] = useState("x1");
   const [showManagers, setShowManagers] = useState(false);
   const [showUpgrades, setShowUpgrades] = useState(false);
   const [showAnges, setShowAnges] = useState(false);
   const [score, setScore] = useState(world.score);
   const [bonusAnge, setBonusAnge] = useState(world.angelbonus);
-  const [open, setOpen] = useState(false);
-  const [snackBarManager, setSnackBarManager] = useState(false);
+  const [snackBarUnlocks, setSnackBarUnlocks] = useState(false);
+  const [snackBarAllUnlocks, setSnackBarAllUnlocks] = useState(false);
+  const [actualUnlocks, setActualUnlocks] = useState(world.allunlocks[0]);
+  const [actualAllUnlocks, setActualAllUnlocks] = useState(world.allunlocks[0]);
+  const [snackBarReset, setSnackBarReset] = useState(false);
+  const [resetAnge, setResetAnge] = useState(0);
 
-
+// fonction qui met à jour le score une fois que la production est finie
   function onProductionDone(p: Product): void {
     // calcul de la somme obtenue par la production du produit
     let gain = p.revenu * p.quantite * (1 + ange * bonusAnge / 100)
@@ -133,6 +137,7 @@ export default function Main({ loadworld, username }: MainProps) {
     setMoney(newMoney)
   }
 
+  // engager un manager
   function hireManager(manager: Palier): void {
     manager.unlocked = true;
     let produit = world.products.find(p => p.id === manager.idcible)
@@ -148,7 +153,7 @@ export default function Main({ loadworld, username }: MainProps) {
     engagerManager({ variables: { name: manager.name } });
   }
 
-
+// acheter des cash upgrades
   function buyUpgrade(upgrade: Palier): void {
     upgrade.unlocked = true;
 
@@ -171,6 +176,7 @@ export default function Main({ loadworld, username }: MainProps) {
     acheterCashUpgrade({ variables: { name: upgrade.name } });
   }
 
+  // acheter des angelUpgrades
   function buyAnge(angel: Palier): void {
     angel.unlocked = true
     let newAnge = ange - angel.seuil
@@ -193,6 +199,7 @@ export default function Main({ loadworld, username }: MainProps) {
     acheterAngelUpgrade({ variables: { name: angel.name } });
   }
 
+  // reset world
   function resetWorld() {
     newWorld({ variables: {} });
     window.location.reload();
@@ -209,6 +216,7 @@ export default function Main({ loadworld, username }: MainProps) {
     setShowAnges(!showAnges)
   }
 
+  // acheter des produits
   function onProductBuy(p: Product) {
     //console.log("jai cliqué ")
     if (money >= p.cout) {
@@ -248,6 +256,8 @@ export default function Main({ loadworld, username }: MainProps) {
     p.paliers.forEach(u => {
       if (u.idcible === p.id && p.quantite >= u.seuil) {
         u.unlocked = true
+        setActualUnlocks(u)
+        setSnackBarUnlocks(true)
         
         if (u.typeratio === "vitesse") {
           p.vitesse = Math.round(p.vitesse / u.ratio)
@@ -272,6 +282,8 @@ export default function Main({ loadworld, username }: MainProps) {
         })
         if (allunlocks) {
           a.unlocked = true
+          setActualAllUnlocks(a)
+          setSnackBarAllUnlocks(true)
           if (a.typeratio === "ange") {
             world.angelbonus += a.ratio
           } else {
@@ -294,6 +306,7 @@ export default function Main({ loadworld, username }: MainProps) {
     })
   }
 
+  // fonction qui change la variable qtmulti pour l'achat des produits
   function handleChange() {
     if (qtmulti === "x1") { setQtmulti("x10"); }
     if (qtmulti === "x10") { setQtmulti("x100"); }
@@ -301,10 +314,16 @@ export default function Main({ loadworld, username }: MainProps) {
     if (qtmulti === "Max") { setQtmulti("x1"); }
   }
 
+  // affiche le nombre d'ange qu'on va gagner si on reset le world et demande confirmation pour le reset
+  function clickReset(){
+    setSnackBarReset(true)
+    let calculAnge = Math.round(150 * Math.sqrt(score / Math.pow(10, 10))) - world.totalangels
+    setResetAnge(calculAnge)
+  }
+
 
   return (
     <div className="App">
-   
 
       <div className="header">
         <div className="logo-container">
@@ -372,39 +391,9 @@ export default function Main({ loadworld, username }: MainProps) {
           {showAnges && <AngeComponent loadworld={world} buyAnge={buyAnge} handleAnge={handleAnge} showAnges={showAnges} ange={ange} />}
 
           {/*<button className="boutonMenu" id="reset-world" onClick={() => resetWorld()} >Reset World !</button>*/}
-          <button className="boutonMenu" id="reset-world" onClick={() => resetWorld()}>
+          <button className="boutonMenu" id="reset-world" onClick={() => clickReset()} disabled={(Math.round(150 * Math.sqrt(score / Math.pow(10, 10))) - world.totalangels)<0}>
             <img src="https://cdn-icons-png.flaticon.com/512/5486/5486166.png" alt="Reset World !" />
           </button>
-
-          {/*<div className="unlocks">
-            {
-              world.allunlocks.filter((allunlock: Palier) => allunlock.unlocked).map(
-                (allunlock: Palier) => {
-                  return (
-                    <div key={allunlock.seuil} className="managergrid">
-                      <div>
-                        <div className="logo">
-                          <img className="round" src={"http://localhost:4000/" + allunlock.logo} />
-                        </div>
-                      </div>
-                      <div className="infosmanager">
-                        <div className="managername">{allunlock.name}</div>
-                      </div>
-                    </div>
-                  );
-                }
-              )
-            }
-          </div>*/}
-          <Snackbar
-            onClose={(event, reason) => {
-              // `reason === 'escapeKeyDown'` if `Escape` was pressed
-              setOpen(false);
-              // call `event.preventDefault` to only close one Snackbar at a time.
-            }}
-          />
-
-          
 
         </div>
 
@@ -431,6 +420,34 @@ export default function Main({ loadworld, username }: MainProps) {
             </div>
         </div>
       </div>
+
+      <div className="SnackBar">
+        <Snackbar open={snackBarUnlocks} autoHideDuration={3000} onClose={() => setSnackBarUnlocks(false)}>
+          <Alert severity="success" sx={{ width: '100%' }}>
+            <img className="petitRound" src={"http://localhost:4000/" + actualUnlocks.logo}/>
+            Vous avez {actualUnlocks.name} !
+          </Alert>
+        </Snackbar>
+      </div>
+
+      <div className="SnackBar">
+        <Snackbar open={snackBarAllUnlocks} autoHideDuration={3000} onClose={() => setSnackBarAllUnlocks(false)}>
+          <Alert severity="success" sx={{ width: '100%' }}>
+            <img className="petitRound" src={"http://localhost:4000/" + actualAllUnlocks.logo}/>
+            Vous avez {actualAllUnlocks.name} !
+          </Alert>
+        </Snackbar>
+      </div>
+
+      <div className="SnackBar">
+        <Snackbar open={snackBarReset} autoHideDuration={10000} onClose={() => setSnackBarReset(false)}>
+          <Alert severity="error" sx={{ width: '100%' }}>
+            Es-tu sûr de vouloir reset ton compte YouTube ? Avec {resetAnge} anges 
+            <Button onClick={() => resetWorld()}>OK</Button>
+          </Alert>
+        </Snackbar>
+      </div>
+
     </div>
 
   )
