@@ -1,5 +1,6 @@
 import { World, Palier } from "./world";
 import React, { useState } from 'react';
+import {Snackbar, Alert} from "@mui/material";
 
 
 type AngeProps = {
@@ -12,9 +13,17 @@ type AngeProps = {
 }
 
 export default function AngeComponent({loadworld, buyAnge, handleAnge, showAnges, ange}:AngeProps) {
-    //let showAnges = false; // déclaration d'une variable booléenne showAnges à true
 
     const [world,setWorld] = useState(loadworld)
+    const [snackBarAnge, setSnackBarAnge] = useState(false);
+    const [actualAnge, setSnackActualAnge] = useState(world.angelupgrades[0]);
+
+
+    function clickAnge(ange: Palier){
+        setSnackBarAnge(true)
+        buyAnge(ange)
+        setSnackActualAnge(ange)
+    }
 
     return (
         <div className="manager" >
@@ -48,7 +57,7 @@ export default function AngeComponent({loadworld, buyAnge, handleAnge, showAnges
                                                     <div className="managername">{angel.name}</div>
                                                     <div className="managercost">{angel.seuil}</div>
                                                 </div>
-                                                <div onClick={() => buyAnge(angel)}>
+                                                <div onClick={() => clickAnge(angel)}>
 
                                                     <button className="boutonHire"  disabled={ange < angel.seuil}>
                                                         <img className="boutonHire" src="https://cdn-icons-png.flaticon.com/512/478/478045.png" alt="Hire" style={{ pointerEvents: ange < angel.seuil ? 'none' : 'auto' }}  />
@@ -63,6 +72,14 @@ export default function AngeComponent({loadworld, buyAnge, handleAnge, showAnges
                                 )
                             }
                             
+                        </div>
+                        <div>
+                            <Snackbar open={snackBarAnge} autoHideDuration={3000} onClose={() => setSnackBarAnge(false)}>
+                                <Alert severity="success" sx={{ width: '100%' }}>
+                                    <img className="petitRound" src={"http://localhost:4000/" + actualAnge.logo}/>
+                                    Vous venez de faire un placement de produit {actualAnge.name}
+                                </Alert>
+                          </Snackbar>
                         </div>
                     </div>
                 }

@@ -1,5 +1,6 @@
 import { World, Palier } from "./world";
 import React, { useState } from 'react';
+import {Snackbar, Alert} from "@mui/material";
 
 
 type UpgradeProps = {
@@ -16,6 +17,15 @@ export default function UpgradeComponent({loadworld, buyUpgrade, handleUpgrade, 
     //let showUpgrades = false; // déclaration d'une variable booléenne showUpgrades à true
 
     const [world,setWorld] = useState(loadworld)
+    const [snackBarUpgrade, setSnackBarUpgrade] = useState(false);
+    const [actualUpgrade, setSnackActualUpgrade] = useState(world.upgrades[0]);
+
+
+    function clickUpgrade(upgrade: Palier){
+        setSnackBarUpgrade(true)
+        buyUpgrade(upgrade)
+        setSnackActualUpgrade(upgrade)
+    }
 
     return (
         <div className="manager" >
@@ -51,7 +61,7 @@ export default function UpgradeComponent({loadworld, buyUpgrade, handleUpgrade, 
                                                     </div>
                                                     <div className="Upgradecost">{upgrade.seuil}</div>
                                                 </div>
-                                                <div onClick={() => buyUpgrade(upgrade)}>
+                                                <div onClick={() => clickUpgrade(upgrade)}>
                                                     <button className="boutonHire" disabled={money < upgrade.seuil}>
                                                     <img className="boutonHire" src="https://cdn-icons-png.flaticon.com/512/7286/7286290.png" alt="Hire" style={{ pointerEvents: money < upgrade.seuil ? 'none' : 'auto' }}/>
                                                     </button>
@@ -64,6 +74,14 @@ export default function UpgradeComponent({loadworld, buyUpgrade, handleUpgrade, 
                                 )
                             }
                             
+                        </div>
+                        <div>
+                            <Snackbar open={snackBarUpgrade} autoHideDuration={3000} onClose={() => setSnackBarUpgrade(false)}>
+                                <Alert severity="success" sx={{ width: '100%' }}>
+                                    <img className="petitRound" src={"http://localhost:4000/" + actualUpgrade.logo}/>
+                                    Vous venez de faire un <div>{actualUpgrade.name}</div> !
+                                </Alert>
+                          </Snackbar>
                         </div>
                     </div>
                 }

@@ -10,8 +10,8 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-//uri prof : https://isiscapitalistgraphql.kk.kurasawa.fr/graphql
-//uriClea :http://localhost:4000/graph
+//uri : https://isiscapitalistgraphql.kk.kurasawa.fr/graphql
+//uri Clea :http://localhost:4000/graph
 const client = new ApolloClient({
   uri: 'http://localhost:4000/graphql',
   cache: new InMemoryCache()

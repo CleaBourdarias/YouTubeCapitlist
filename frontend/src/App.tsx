@@ -1,13 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import './style.css';
 import { gql, useApolloClient, useQuery } from '@apollo/client';
 import Main from './Main';
-import { Product } from './world';
-import ProductComponent from './Product';
 
-//a voir si ça marche 
+
+//appel du backend pour récupérer le monde
 const GET_WORLD = gql`
   query getWorld {
     getWorld {
@@ -84,10 +82,9 @@ const GET_WORLD = gql`
 
 function App() {
 
-
   const [username, setUsername] = useState(localStorage.getItem('username') || `Youtubeur${Math.floor(Math.random()*10000)}`);
-
   
+  // mise a jour du monde quand on écrit dans la barre d'ID
   const onUserNameChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
     localStorage.setItem("username", event.currentTarget.value);
     setUsername(event.currentTarget.value);
@@ -95,6 +92,7 @@ function App() {
     client.resetStore()
     console.log(event.currentTarget.value);
   };
+  // rechargement de la page lorsqu'on tappe la touche entrée pour réactualiser la money et le score
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       window.location.reload();
