@@ -49,7 +49,7 @@ export default function UpgradeComponent({loadworld, buyUpgrade, handleUpgrade, 
                         
                                         return (
                                             <div className="managergrid">
-                                                <div>
+                                                <div className="info-Logo">
                                                     <div className="logo">
                                                     <img className="round" src={"http://localhost:4000/" + upgrade.logo}/>
                                                     </div>
@@ -59,7 +59,8 @@ export default function UpgradeComponent({loadworld, buyUpgrade, handleUpgrade, 
                                                     <div className="managercible">
                                                         {world.products[upgrade.idcible - 1].name}
                                                     </div>
-                                                    <div className="Upgradecost">{upgrade.seuil}</div>
+                                                    <div className="Upgradecost">{upgrade.seuil}
+                                                    <img className="logoDollarsUpgradre" src="https://cdn-icons-png.flaticon.com/512/2842/2842651.png"/></div>
                                                 </div>
                                                 <div onClick={() => clickUpgrade(upgrade)}>
                                                     <button className="boutonHire" disabled={money < upgrade.seuil}>
@@ -67,6 +68,7 @@ export default function UpgradeComponent({loadworld, buyUpgrade, handleUpgrade, 
                                                     </button>
                                                     {/*<button disabled={money < upgrade.seuil}>Hire !</button>*/}
                                                 </div>
+                                                
                                             </div>
                                         );
                                     }
@@ -75,11 +77,11 @@ export default function UpgradeComponent({loadworld, buyUpgrade, handleUpgrade, 
                             }
                             
                         </div>
-                        <div>
+                        <div className="SnackBar">
                             <Snackbar open={snackBarUpgrade} autoHideDuration={3000} onClose={() => setSnackBarUpgrade(false)}>
                                 <Alert severity="success" sx={{ width: '100%' }}>
                                     <img className="petitRound" src={"http://localhost:4000/" + actualUpgrade.logo}/>
-                                    Vous venez de faire un <div>{actualUpgrade.name}</div> !
+                                    Vous venez de faire un <div>{actualUpgrade.name}</div> 
                                 </Alert>
                           </Snackbar>
                         </div>

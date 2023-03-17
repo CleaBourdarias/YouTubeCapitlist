@@ -218,6 +218,7 @@ export default function Main({ loadworld, username }: MainProps) {
 
   // acheter des produits
   function onProductBuy(p: Product) {
+    let lastQuantite = p.quantite
     //console.log("jai cliqué ")
     if (money >= p.cout) {
       if (qtmulti === "x1") {
@@ -254,7 +255,7 @@ export default function Main({ loadworld, username }: MainProps) {
     }
     // on vérifie si il y a un unlock a débloquer
     p.paliers.forEach(u => {
-      if (u.idcible === p.id && p.quantite >= u.seuil) {
+      if (u.idcible === p.id && p.quantite >= u.seuil && lastQuantite<u.seuil) {
         u.unlocked = true
         setActualUnlocks(u)
         setSnackBarUnlocks(true)
@@ -272,7 +273,7 @@ export default function Main({ loadworld, username }: MainProps) {
     })
     // on vérifie si des allunlocks sont débloqués
     world.allunlocks.forEach(a => {
-      if (p.quantite >= a.seuil) {
+      if (p.quantite >= a.seuil && lastQuantite<a.seuil) {
         let allunlocks = true
         // on parcours les produits pour savoir s'il ont tous un quantité suffisante
         world.products.forEach(p => {

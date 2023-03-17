@@ -28,8 +28,9 @@ export default function ManagerComponent({loadworld, hireManager, handleManager,
 
 
     return (
+        
         <div className="manager" >
-            <div>
+            <div className="containerManager">
                 {showManagers &&
                     <div className="modal">
                         <div>
@@ -48,6 +49,7 @@ export default function ManagerComponent({loadworld, hireManager, handleManager,
                         
                                         return (
                                             <div key={manager.idcible} className="managergrid">
+                                                
                                                 <div>
                                                     <div className="logo">
                                                     <img className="round" src={"http://localhost:4000/" + manager.logo}/>
@@ -58,7 +60,8 @@ export default function ManagerComponent({loadworld, hireManager, handleManager,
                                                     <div className="managercible">
                                                         {world.products[manager.idcible - 1].name}
                                                     </div>
-                                                    <div className="managercost">{manager.seuil}</div>
+                                                    <div className="managercost">{manager.seuil}
+                                                    <img className="logoDollarsUpgradre" src="https://cdn-icons-png.flaticon.com/512/2842/2842651.png"/></div>
                                                 </div>
                                                 <div onClick={() => clickManager(manager)}>
                                                 
@@ -67,6 +70,7 @@ export default function ManagerComponent({loadworld, hireManager, handleManager,
                                                 </button>
                                                     {/*<button disabled={money < manager.seuil}>Hire !</button>*/}
                                                 </div>
+                                               
                                             </div>
                                         );
                                     }

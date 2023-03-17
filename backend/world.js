@@ -472,9 +472,9 @@ module.exports = {
             "name": "ft. Natoo",
             "logo": "icons/Natoo.jpg",
             "seuil": 1e4,
-            "idcible": 1,
-            "ratio": 3,
-            "typeratio": "gain",
+            "idcible": 3,
+            "ratio": 5,
+            "typeratio": "vitesse",
             "unlocked": false
         },
         {
