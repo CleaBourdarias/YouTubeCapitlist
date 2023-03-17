@@ -33,7 +33,7 @@ export default function AngeComponent({loadworld, buyAnge, handleAnge, showAnges
                         <div>
                             <h1 className="title">Les placements de produits vont augmenter tes revenus 
                             <img className="img-angeupgrade" src="https://cdn-icons-png.flaticon.com/512/4626/4626780.png"/>
-                            <button className="boutonCroix" onClick={() => handleAnge()}>
+                            <button className="boutonCroix" id="boutonAngeUpgrade" onClick={() => handleAnge()}>
                             <img className="boutonCroix" src="https://cdn-icons-png.flaticon.com/512/4226/4226718.png" alt="X" />
                             </button>
 
@@ -55,7 +55,8 @@ export default function AngeComponent({loadworld, buyAnge, handleAnge, showAnges
                                                 </div>
                                                 <div className="infosmanager">
                                                     <div className="managername">{angel.name}</div>
-                                                    <div className="managercost">{angel.seuil}</div>
+                                                    <div className="managercost">{angel.seuil}
+                                                    <img className="logoAngeUpgradre" src="https://cdn-icons-png.flaticon.com/512/4442/4442490.png"/></div>
                                                 </div>
                                                 <div onClick={() => clickAnge(angel)}>
 

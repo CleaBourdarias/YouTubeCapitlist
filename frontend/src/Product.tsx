@@ -106,8 +106,8 @@ export default function ProductComponent({ loadworld, product, onProductionDone,
 
                 <div className="lesecond">
                     <span className="titre-video"> {product.name} </span>
-                    <div className="style-infoVideo">Quantité de produit : <span> {product.quantite} </span></div>
-                    <div className="style-infoVideo">Coût du produit : <span> {transform(product.cout)} </span></div>
+                    <div className="style-infoVideo">Nombre de vue : <span> {product.quantite} </span></div>
+                    <div className="style-infoVideo">Coût du produit : <span dangerouslySetInnerHTML={{ __html: transform(product.cout) }}/> </div>
 
                     <button className="buy-product" onClick={() => onProductBuy(product)} disabled={
                         (money<product.cout && qtmulti==="x1") || (money<(product.cout*10) && qtmulti==="x10") || (money<(product.cout*100) && qtmulti==="x100") || (money<product.cout && qtmulti==="Max")}>BUY</button>
