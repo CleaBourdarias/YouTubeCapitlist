@@ -338,22 +338,18 @@ export default function Main({ loadworld, username }: MainProps) {
 
       <div className="header">
         <div className="YouTubeMoney-container">
-          {/*<div> YouTubeMoney </div>*/}
           <img className="YouTubeMoney" src="https://cdn-icons-png.flaticon.com/512/3037/3037150.png" />
           <span className="style" dangerouslySetInnerHTML={{ __html: transform(money) }} />
         </div>
         <div className="ange-container">
-          {/*<div> ange </div>*/}
           <img className="ange" src="https://cdn-icons-png.flaticon.com/512/1480/1480530.png" />
           <span className="style" dangerouslySetInnerHTML={{ __html: transform(ange) }} />
         </div>
         <div className="score-container">
-          {/*<div> score </div>*/}
           <img className="score" src="https://cdn-icons-png.flaticon.com/512/9091/9091565.png" />
           <span className="style" dangerouslySetInnerHTML={{ __html: transform(score) }} />
         </div>
         <div className="BonusAnge-container">
-          {/*<div> Bonus ange  </div>*/}
           <img className="BonusAnge" src="https://cdn-icons-png.flaticon.com/512/5110/5110795.png" />
           <span className="style" dangerouslySetInnerHTML={{ __html: transform(bonusAnge) }} />
         </div>
@@ -369,14 +365,12 @@ export default function Main({ loadworld, username }: MainProps) {
       <div className="main">
 
         <div>
-          {/*<button className="boutonMenu" onClick={() => handleManager()} >Engager un manager</button>*/}
           <button className="boutonMenu" onClick={() => handleManager()}>
             <img src="https://cdn-icons-png.flaticon.com/512/9686/9686199.png" alt="Engager un manager" />
             <span>Engager un manager</span>
           </button>
           {showManagers && <ManagerComponent loadworld={world} hireManager={hireManager} handleManager={handleManager} showManagers={showManagers} money={money}/>}
 
-          {/*<button className="boutonMenu" onClick={() => handleUpgrade()} >Afficher les CashUpgrades</button>*/}
           <button className="boutonMenu" onClick={() => handleUpgrade()}>
             <img src="https://cdn-icons-png.flaticon.com/512/1548/1548175.png" alt="Afficher les CashUpgrades" />
             <span>Afficher les CashUpgrades</span>
@@ -384,14 +378,12 @@ export default function Main({ loadworld, username }: MainProps) {
           {showUpgrades && <UpgradeComponent loadworld={world} buyUpgrade={buyUpgrade} handleUpgrade={handleUpgrade} showUpgrades={showUpgrades} money={money} />}
 
 
-          {/*<button className="boutonMenu" onClick={() => handleAnge()} >Acheter les AngeUpgrades</button>*/}
           <button className="boutonMenu" onClick={() => handleAnge()}>
             <img src="https://cdn-icons-png.flaticon.com/512/1497/1497829.png" alt="Acheter les AngeUpgrades" />
             <span>Acheter les AngeUpgrades</span>
           </button>
           {showAnges && <AngeComponent loadworld={world} buyAnge={buyAnge} handleAnge={handleAnge} showAnges={showAnges} ange={ange} />}
 
-          {/*<button className="boutonMenu" id="reset-world" onClick={() => resetWorld()} >Reset World !</button>*/}
           <button className="boutonMenu" id="reset-world" onClick={() => clickReset()} disabled={(Math.round(150 * Math.sqrt(score / Math.pow(10, 10))) - world.totalangels)<0}>
             <img src="https://cdn-icons-png.flaticon.com/512/5486/5486166.png" alt="Reset World !" />
           </button>

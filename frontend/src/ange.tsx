@@ -38,7 +38,6 @@ export default function AngeComponent({loadworld, buyAnge, handleAnge, showAnges
                             </button>
 
 
-                            {/*<button onClick={() => handleAnge()}>X</button>*/}
                             </h1>
                         </div>
                         <div>
@@ -64,7 +63,6 @@ export default function AngeComponent({loadworld, buyAnge, handleAnge, showAnges
                                                         <img className="boutonHire" src="https://cdn-icons-png.flaticon.com/512/478/478045.png" alt="Hire" style={{ pointerEvents: ange < angel.seuil ? 'none' : 'auto' }}  />
                                                     </button>
 
-                                                    {/*<button disabled={ange < angel.seuil}>Buy !</button>*/}
                                                 </div>
                                             </div>
                                         );

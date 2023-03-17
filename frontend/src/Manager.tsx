@@ -39,7 +39,6 @@ export default function ManagerComponent({loadworld, hireManager, handleManager,
                             <button className="boutonCroix" onClick={() => handleManager()}>
                             <img className="boutonCroix" src="https://cdn-icons-png.flaticon.com/512/4226/4226718.png" alt="X" />
                             </button>
-                            {/*<button onClick={() => handleManager()}>X</button>*/}
                             </h1>
                         </div>
                         <div>
@@ -68,7 +67,6 @@ export default function ManagerComponent({loadworld, hireManager, handleManager,
                                                 <button className="boutonHire" disabled={money < manager.seuil}>
                                                 <img className="boutonHire" src="https://cdn-icons-png.flaticon.com/512/4470/4470940.png" alt="Hire" style={{ pointerEvents: money < manager.seuil ? 'none' : 'auto' }}/>
                                                 </button>
-                                                    {/*<button disabled={money < manager.seuil}>Hire !</button>*/}
                                                 </div>
                                                
                                             </div>

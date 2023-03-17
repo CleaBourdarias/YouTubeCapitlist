@@ -39,7 +39,6 @@ export default function UpgradeComponent({loadworld, buyUpgrade, handleUpgrade, 
                             <img className="boutonCroix" src="https://cdn-icons-png.flaticon.com/512/4226/4226718.png" alt="X" />
                             </button>
 
-                            {/*<button onClick={() => handleUpgrade()}>X</button>*/}
                             </h1>
                         </div>
                         <div>
@@ -66,7 +65,6 @@ export default function UpgradeComponent({loadworld, buyUpgrade, handleUpgrade, 
                                                     <button className="boutonHire" disabled={money < upgrade.seuil}>
                                                     <img className="boutonHire" src="https://cdn-icons-png.flaticon.com/512/7286/7286290.png" alt="Hire" style={{ pointerEvents: money < upgrade.seuil ? 'none' : 'auto' }}/>
                                                     </button>
-                                                    {/*<button disabled={money < upgrade.seuil}>Hire !</button>*/}
                                                 </div>
                                                 
                                             </div>
